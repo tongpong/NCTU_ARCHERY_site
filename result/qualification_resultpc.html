@@ -1,0 +1,262 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>第二十一屆風城盃</title>
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--my CSS-->
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/viewscore.css">
+	<link rel="stylesheet" href="css/loading.css">
+</head>
+
+<body style="min-height:900px">
+	
+    <div class="container-fluid" align="center" >
+        <div id="resultPage" >
+           <div class="col-xs-12 text-center headerBanner">
+            <h1>第二十一屆風城盃</h1>
+			<div class="tab" id="sub_tab">
+                        <button class="tablinks2 active" onclick="sub_sel(event,3)">新人</button>
+                        <button class="tablinks2" onclick="sub_sel(event,2)">男丙</button>
+                        <button class="tablinks2" onclick="sub_sel(event,1)">女丙</button>
+                        <button class="tablinks2" onclick="sub_sel(event,0)">乙組</button>
+                    </div>
+			</div>
+	
+            <div class="row">
+				
+			<div class="col-xs-12">
+                
+                    
+                    <div class="tab-content">
+                        <p>點擊排名可顯示詳細箭值</p>
+						<div id="qualRookie" class="tabcontent">
+                            <div id="beg_table_area">
+                                <table id="beg_table" class="result">
+                                    <tr class="result">
+                                        <th class="result">
+                                            排名
+                                        </th>
+                                        <th class="result">
+                                            靶號
+                                        </th>
+                                        <th class="result_name">
+                                            姓名
+                                        </th>
+                                        <th class="result_school">
+                                            學校
+                                        </th>
+                                        <th class="result">
+                                            成績
+                                        </th>
+                                        <th class="result">
+                                            X+10
+                                        </th>
+                                        <th class="result">
+                                            X
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="qualMenC" class="tabcontent">
+                            <div id="CM_table_area">
+                                <table id="CM_table" class="result">
+                                    <tr class="result">
+                                        <th class="result">
+                                            排名
+                                        </th>
+                                        <th class="result">
+                                            靶號
+                                        </th>
+                                        <th class="result_name">
+                                            姓名
+                                        </th>
+                                        <th class="result_school">
+                                            學校
+                                        </th>
+                                        <th class="result">
+                                            成績
+                                        </th>
+                                        <th class="result">
+                                            X+10
+                                        </th>
+                                        <th class="result">
+                                            X
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="qualWomenC" class="tabcontent">
+                            <div id="CF_table_area">
+                                <table id="CF_table" class="result">
+                                    <tr class="result">
+                                        <th class="result">
+                                            排名
+                                        </th>
+                                        <th class="result">
+                                            靶號
+                                        </th>
+                                        <th class="result_name">
+                                            姓名
+                                        </th>
+                                        <th class="result_school">
+                                            學校
+                                        </th>
+                                        <th class="result">
+                                            成績
+                                        </th>
+                                        <th class="result">
+                                            X+10
+                                        </th>
+                                        <th class="result">
+                                            X
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="qualB" class="tabcontent">
+                            <div id="B_table_area">
+                                <table id="B_table" class="result">
+                                    <tr class="result">
+                                        <th class="result">
+                                            排名
+                                        </th>
+                                        <th class="result">
+                                            靶號
+                                        </th>
+                                        <th class="result_name">
+                                            姓名
+                                        </th>
+                                        <th class="result_school">
+                                            學校
+                                        </th>
+                                        <th class="result">
+                                            成績
+                                        </th>
+                                        <th class="result">
+                                            X+10
+                                        </th>
+                                        <th class="result">
+                                            X
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+		
+    <div id="dialog_table" title="">
+        <table class="result_inf">
+			<tr>
+				<td align="right">
+					排名
+				</td>
+				<td id="det_rank">
+					
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					靶號
+				</td>
+				<td id="det_tar">
+					
+				</td >
+			</tr>
+			<tr>
+				<td align="right">
+					姓名
+				</td>
+				<td id="det_name">
+					
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					學校
+				</td>
+				<td id="det_school">
+					
+				</td align="right">
+			</tr>
+			<tr>
+				<td align="right">
+					成績
+				</td>
+				<td id="det_res">
+					
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					X+10
+				</td>
+				<td id="det_x10">
+					
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					X
+				</td>
+				<td id="det_x">
+					
+				</td>
+			</tr>
+		</table>
+		<br>
+        <table id="details_table" class="result_dia" align="center">
+            	
+        </table>
+		<br>
+	<br>
+	<br>
+    </div>
+	<div id="loadingPage">
+        <div class='loader loader1'>
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+    <footer>
+        <!--jQuery-->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+        <!--my js-->
+        <script src="js/qualification_resultpc.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		
+    </footer>
+</body>
+
+</html>

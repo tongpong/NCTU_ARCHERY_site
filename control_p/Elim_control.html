@@ -1,0 +1,158 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>E_Control</title>
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="jssrc/jquery.collapse.js"></script>
+    <STYLE TYPE="text/css">
+        <!-- @import url(csssrc/control.css);
+        -->
+    </STYLE>
+</head>
+
+<body bgcolor="	#DDDDDD">
+    <table class="main" valign="top" align="center">
+        <td class="main"valign="top" >
+            <div class="r1" data-collapse>
+                <h2 data-collapse-summary="" class="open"><a href="#">主控制台</a></h2>
+                <div id="wave control" aria-hidden="false" style="display: block;">
+                    <table class="sub">
+                        <tr>
+                            <td class="sub">
+                                <button type="submit" id="refresh">刷新</button>
+                                <br>
+                                <div id="stage_name">
+                                    <br>
+                                </div>
+                                <p>目前正在進行第<span id="wave_num">0</span>波</p>
+                                <button type="submit" id="next_wave">下一波</button>
+                                <div id="next_stage" data-collapse style="width:200px;">
+                                    <h3>	<a href="#">下一場比賽</a>	</h3>
+                                    <div id="stage" style="border: 1px solid black;text-align:center;">
+                                        <button type="submit" id="stage_btn">確定</button>
+                                    </div>
+                                </div>
+
+                                <div id="force_area" data-collapse style="width:200px;">
+                                    <h3>	<a href="#">強制修改</a>	</h3>
+                                    <div id="force" style="border: 1px solid black;text-align:center;">
+                                        到第
+                                        <input type="text" id="force_wave" size="1" value="0">波
+                                        <button type="submit" id="force_sbtn">確定</button>
+                                        <br>
+                                        <select id="stage_sel">
+                                            <option value="4">32強賽</option>
+                                            <option value="3">16強賽</option>
+                                            <option value="2">8強賽</option>
+                                            <option value="1">準決賽</option>
+                                            <option value="0">決賽</option>
+                                        </select>
+										<button type="submit" id="force_stage_sbtn">確定</button>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="sub" align="center">
+
+                                <div id="init_area" data-collapse style="width:200px;">
+                                    <h3>	<a href="#">初始化設定</a>	</h3>
+                                    <div id="init" style="border: 1px solid black;">
+
+                                        <button type="submit" id="init_btn" align=center>確定</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+						
+                    </table>
+                </div>
+             </div>
+                    <div class="r1"  data-collapse>
+                    <h2><a href="#">修改選手成績:</a></h2>
+                      <div id="result_mod">
+                         格式為：{對抗賽靶位},{比賽代號[0:'Final',1:'Semi_Final',2:'Quarter',3:'Eighth',4:'Sixteenth']},{波數},{A成績1},{A成績2},{A成績3},{B成績1},{B成績2},{B成績3}）<br>
+                         換行分隔多筆資料<br>
+                         同分加射時個空掉後面的成績,但是","一定要有
+                         <p>
+                            <textarea id="mod_area" cols="40" rows="10"></textarea>
+                         </p>
+                         <p>
+                            <textarea id="message_area" cols="40" rows="10" readonly="readonly"></textarea>
+                         </p>
+                         <button type="submit" id="result_smbt">傳送成績</button>
+                         <br>
+                      </div>
+                    </div>
+             
+					<div class="r1"  data-collapse>
+						<h2 data-collapse-summary="" class="open"><p><a href="#">對抗賽</a> <div id="iframe_reframe" align="right" onclick="iframe_reload()">更新</div></p></h2>
+						
+                        <iframe id ="ranking_frame" src="../result/elimination_result.html" width="100%" height="900" frameborder="0"></iframe>
+                        
+					</div>
+                
+            
+        </td>
+        <td class="main"  align="center" valign="top">
+               <div class="side" data-collapse>
+                  <h2 data-collapse-summary="" class="open" >			<a href="#"align="left">靶位狀況</a></h2>
+                  <div id="target_situration" aria-hidden="false" style="display: block;">
+                     <div id="loadingPage">
+                        <div class='loader loader1'>
+                           <div>
+                              <div>
+                                 <div>
+                                    <div>
+                                       <div>
+                                          <div></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <table id="target_infor" class="target" border="0">
+                        <tr>
+                           <th>
+                              靶號
+                           </th>
+                           <th>
+                              人數
+                           </th>
+                           <th>
+                              驗證碼
+                           </th>
+                        </tr>
+                     </table>
+                     <div id="del_var"  data-collapse>
+                        <h3><a href="#">清除驗證碼</a></h3>
+                        <div id="del">
+                           靶號：
+                           <input type="text" id="force_del_tar_ver" size="1">
+                           <button type="submit" id="force_del_sbtn" onclick="del_ver_code()">確定</button>
+                        </div>
+                     </div>
+                     <div id="reset_ent"  data-collapse>
+                        <h3><a href="#">重設靶位輸入(一波)</a></h3>
+                        <div>
+                           靶號：
+                           <input type="text" id="force_reset_ent" size="1" >
+                           <button type="submit" id="force_reset_ent_btn" onclick="force_reset_ent()">確定</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </td>
+    </table>
+    <script type="text/javascript" src="jssrc/init_globel.js"></script>
+    <script type="text/javascript" src="jssrc/Verification.js"></script>
+    <script type="text/javascript" src="jssrc/Elim_control.js"></script>
+</body>
+
+</html>

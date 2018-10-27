@@ -1,0 +1,40 @@
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+      <title>Control</title>
+      <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+      <script src="jssrc/jquery.collapse.js"></script>
+	  <STYLE TYPE="text/css">
+         <!-- 
+            @import url(csssrc/tab.css); 
+            --> 
+      </STYLE>
+   </head>
+   <body bgcolor="	#DDDDDD">
+	
+	  
+      <div class="tab">
+         <button class="tablinksactive" onclick="openTab(event, 'Qual_page')">資格賽</button>
+         <button class="tablinks" onclick="openTab(event, 'Elim_page')">對抗賽</button>
+         <button class="tablinks" onclick="openTab(event, 'T_Elim_page')">團體對抗賽</button>
+      </div>
+    
+		<div id="Qual_page" class="tabcontent" style="display: block;">
+        <iframe src="Qual_control.html" width="100%" height="100%" frameborder="0"></iframe>
+      </div>
+      
+	  
+	  <div id="Elim_page" class="tabcontent">
+        <iframe src="Elim_control.html" width="100%" height="100%" frameborder="0"></iframe>
+      </div>
+      
+	  
+	  <div id="T_Elim_page" class="tabcontent">
+         <h3>T_Elim_page</h3>
+         
+      </div>
+		 <script type="text/javascript" src="jssrc/tab.js"></script>
+   </body>
+</html>

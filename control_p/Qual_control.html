@@ -1,0 +1,137 @@
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+      <title>Q_Control</title>
+      <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+      <script src="jssrc/jquery.collapse.js"></script>
+      <link rel="stylesheet" href="csssrc/loading.css">
+      <STYLE TYPE="text/css">
+         <!-- @import url(csssrc/control.css);
+            -->
+      </STYLE>
+   </head>
+   <body bgcolor="	#DDDDDD">
+      <table class="main" valign="top" align="center">
+         <tr>
+            <td class="main">
+               <div class="r1" data-collapse>
+                  <h2 data-collapse-summary="" class="open"><a href="#">主控制台</a></h2>
+                  <div id="wave control" aria-hidden="false" style="display: block;">
+                     <table class="sub">
+                        <tr>
+                           <td>
+                              <button type="submit" id="refresh">同步</button>
+                              <br>
+                              <p>目前正在進行<span id="match_stage"></span>第<span id="wave_num">0</span>波</p>
+                              <button type="submit" id="next_wave">下一波</button>
+                              <button type="submit" id="gen_sum">計算成績</button><br>
+                              <input type="checkbox" name="SetOnly" id="SetOnlyCheck" >SetOnly<br><br>
+                              <div id="force_area" data-collapse style="width:200px;">
+                                 <h3>	<a href="#">強制修改</a>	</h3>
+                                 <div id="force" style="border: 1px solid black;">
+                                    到第
+                                    <input type="text" id="force_wave" size="1" value="0">波
+                                    <button type="submit" id="force_sbtn">確定</button>
+                                    <br>
+                                    <button type="submit" id="force_stage_sbtn">修改到資格賽</button>
+                                 </div>
+                              </div>
+                           </td>
+                           <td class="sub" align="center">
+                              <div id="init_area" data-collapse style="width:200px;">
+                                 <h3>	<a href="#">初始化設定</a>	</h3>
+                                 <div id="init" style="border: 1px solid black;">
+                                    <button type="submit" id="init_btn" align=center>確定</button>
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+               </div>
+            </td>
+            <td class="main" rowspan="3" align="center" valign="top">
+               <div class="side" data-collapse>
+                  <h2 data-collapse-summary="" class="open" >			<a href="#"align="left">靶位狀況</a></h2>
+                  <div id="target_situration" aria-hidden="false" style="display: block;">
+                     <div id="loadingPage">
+                        <div class='loader loader1'>
+                           <div>
+                              <div>
+                                 <div>
+                                    <div>
+                                       <div>
+                                          <div></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <table id="target_infor" class="target" border="0">
+                        <tr>
+                           <th>
+                              靶號
+                           </th>
+                           <th>
+                              人數
+                           </th>
+                           <th>
+                              驗證碼
+                           </th>
+                        </tr>
+                     </table>
+                     <div id="del_var"  data-collapse>
+                        <h3><a href="#">清除驗證碼</a></h3>
+                        <div id="del">
+                           靶號：
+                           <input type="text" id="force_del_tar_ver" size="1">
+                           <button type="submit" id="force_del_sbtn">確定</button>
+                        </div>
+                     </div>
+                     <div id="reset_ent"  data-collapse>
+                        <h3><a href="#">重設靶位輸入(一波)</a></h3>
+                        <div>
+                           靶號：
+                           <input type="text" id="force_reset_ent" size="1">
+                           <button type="submit" id="force_reset_ent_btn">確定</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </td>
+         </tr>
+         <tr>
+            <td class="main">
+               <div class="r2" data-collapse>
+                  <h2><a href="#">修改選手資格賽成績:</a></h2>
+                  <div id="result_mod">
+                     <p>
+                        <textarea id="mod_area" cols="40" rows="10"></textarea>
+                     </p>
+                     <p>
+                        <textarea id="message_area" cols="40" rows="10" readonly="readonly"></textarea>
+                     </p>
+                     <button type="submit" id="result_smbt">傳送成績</button>
+                     <br>
+                  </div>
+            </td>
+         </tr>
+         <tr >
+         <td class="main" height="600" valign="top" colspan="1">
+         </div>
+         <div class="r2" data-collapse>
+         <h2 data-collapse-summary="" class="open"><p><a href="#">資格賽排名</a></p></h2>
+         <iframe id ="ranking_frame" src="../result/qualification_result.html" width="100%" height="100%" frameborder="0"></iframe>
+         </div>
+         </td>
+         </tr>
+      </table>
+      <script type="text/javascript" src="jssrc/init_globel.js"></script>
+      <script type="text/javascript" src="jssrc/Verification.js"></script>
+      <script type="text/javascript" src="jssrc/Qual_controlv2.js"></script>
+   </body>
+</html>

@@ -1,0 +1,219 @@
+@font-face{
+  font-family: PingFang;
+  src: url(../fonts/PingFang/PingFang-TC-Regular.otf) format("opentype");
+}
+
+@font-face{
+  font-family: "San Francisco";
+  src: url(../fonts/San Francisco/San Francisco-Regular.otf) format("opentype");
+}
+
+body{
+  font-family: "San Francisco", PingFang, sans-serif;
+  background-color:#DDDDDD;
+}
+
+.headerBanner{
+  background-color: skyblue;
+  color: white;
+  width:100%;
+  position:relative;
+  margin: auto;
+}
+div.tab {
+	position:relative;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: rgba(151,151,151,0.3);
+	width:95%;
+	text-align:center;
+	margin:auto;
+	color: black;
+	border:none;
+	　
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color:rgba(13,13,13,0.3);
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: rgba(12,12,12,0.3);
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 0;
+    border-top: none;
+}
+table.result{
+	width:100%;
+	max-width:700px;
+	text-align:center;
+	border:1px solid #ccc;
+    margin-left:auto;
+    margin-right:auto;
+	
+}
+
+table.result_inf{
+	width:90%;
+	text-align:center;
+	border:0px solid #ccc;
+	border-top:1px dotted #ccc;
+	border-bottom:1px dotted #ccc;
+}
+
+table.result_dia{
+	width:90%;
+	text-align:center;
+	border:0px solid #ccc;
+}
+
+th.result_name{
+	width:20%;
+	text-align:center;
+	background:transparent; 
+		
+}
+th.result_school{
+	width:30%;
+	text-align:center;
+	background:transparent; 
+		
+}
+th.result{
+	width:10%;
+	text-align:center;
+	background:transparent; 
+		
+}
+
+
+tr.result_d{
+	width:14%;
+	background:transparent; 
+	
+}
+th.result_d{
+	width:14%;
+	background:transparent; 
+	text-align:center;	
+}
+td.result{
+	background:transparent;	
+}
+
+td.result_dh{
+	background:transparent;
+	 font-weight:bold;
+	width:14%;
+}
+
+td.result_d{
+	background:transparent;
+	 
+width:14%;	 
+}
+
+td.result_school0{
+	width:40%;
+	background:transparent; 
+	background-color:rgb(214, 214, 214);	
+}
+
+td.result_school1{
+	width:40%;
+	background:transparent; 
+	background-color:#E6E6E6;	
+}
+
+td.result0{
+	width:10%;
+	background:transparent; 
+	background-color:rgb(214, 214, 214);	
+}
+td.result1{
+	width:10%;
+	background:transparent; 
+	background-color:#E6E6E6;	
+}
+
+td.result_name0{
+	width:20%;
+	background:transparent; 
+	background-color:rgb(214, 214, 214);	
+}
+td.result_name1{
+	width:20%;
+	background:transparent; 
+	background-color:#E6E6E6;	
+}
+
+td.sel_result_school0{
+	width:30%;
+	background:transparent; 
+	background-color:#E5FF1F;	
+}
+
+td.sel_result_school1{
+	width:30%;
+	background:transparent; 
+	background-color:#F3FF99;	
+}
+
+td.sel_result0{
+	width:10%;
+	
+	background-color:#E5FF1F;	
+}
+td.sel_result1{
+	width:10%;
+	background:transparent; 
+	background-color:#F3FF99;		
+}
+
+td.sel_result_name0{
+	width:20%;
+	
+	background-color:#E5FF1F;	
+}
+td.sel_result_name1{
+	width:20%;
+	
+	background-color:#F3FF99;	
+}
+
+#mainselection {
+   overflow:hidden;
+   width:250px;
+   -moz-border-radius: 9px 9px 9px 9px;
+   -webkit-border-radius: 9px 9px 9px 9px;
+   border-radius: 9px 9px 9px 9px;
+   box-shadow: 1px 1px 11px #330033;
+   background: 	#F9F900 url("images/15xvbd5.png") no-repeat scroll 219px center;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   text-align-last:center; 
+   
+}
+
+div.select-style{
+	text-align:center;
+	bottom:0px;
+}

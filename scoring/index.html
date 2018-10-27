@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>第二十一屆風城盃</title>
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--my CSS-->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/loading.css">
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="col-xs-12 text-center headerBanner">
+            <h1 id="headname"></h1>
+         </div>
+        <div id="verifyPage">
+            <div class="row">
+                <div class="col-xs-8 text-center col-xs-offset-2">
+                    <h1>競賽計分<br><small>請輸入靶位碼</small></h1>
+                    <div class="form-group">
+                        <label class="control-label" for="verifyCode">
+                        </label>
+                        <input type="text" class="form-control" id="verifyCode">
+                    </div>
+                    <button type="submit" class="btn btn-default" id="btnSubmitCode">送出</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="scoringPage">
+		<div class="col-xs-8 text-center col-xs-offset-2">
+            <h2 class="title2" align="center">
+				<span id="match_type"></span><br>
+                第<span id="wave_num"></span>波
+			</h2>
+		</div>
+			<div class="col-xs-8 text-center col-xs-offset-2">
+                <button type="submit" class="btn btn-default" id="btnSubmitresult">送出</button>
+            </div>
+            <div class="row">
+                <div id="scoreTable">
+                </div>
+				<div class="col-xs-8 text-center col-xs-offset-2">
+                <button type="submit" class="btn btn-default" id="btnSubmitresult2">送出</button>
+            </div>
+            </div>
+			
+            <div class="row">
+                <div id="keypad">
+                    <div class="col-xs-12">
+                        <div class="btn-group btn-group-justified" role="group">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-lg">X</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-lg">10</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-lg">9</button>
+                            </div>
+                        </div>
+
+                        <div class="btn-group btn-group-justified" role="group">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-lg">8</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-lg">7</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-lg">6</button>
+                            </div>
+                        </div>
+
+                        <div class="btn-group btn-group-justified" role="group">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-lg">5</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-lg">M</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-lg">清除</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+			
+			
+        </div>
+	
+	<div id="confirmPage" >
+	
+		<div id="confirm_result_area">
+		</div>
+		<p>確定以上成績無誤？</p>
+	</div>
+	
+    <div id="waitingPage">
+		<div class="col-xs-8 text-center col-xs-offset-2">
+			<h3 id="succ_msg">傳送成功！<br>請等待下一波比賽</h3>
+		</div>
+		<div class="col-xs-12 text-center">
+			<h2><span id="acc_sum_proj">
+		
+			</span></h2>
+		</div>
+	</div>
+    <div id="loadingPage">
+        <div class='loader loader1'>
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	</div>
+	<div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	</div>
+
+
+    <footer>
+        <!--jQuery-->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+        <!--my js-->
+        
+		<script src="js/jquery-ui.min.js"></script>
+        <script src="js/init_scoringglobel.js"></script>
+        <script src="js/scoring.js"></script>
+    </footer>
+</body>
+
+</html>

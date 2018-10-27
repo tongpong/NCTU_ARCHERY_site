@@ -1,0 +1,106 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="utf-8" />
+<title>upload csv file</title>
+</head>
+
+<body>
+    <div id="inputs" class="clearfix">
+        <input type="file" id="Player_data_file" name="Player_data_file[]" multiple />
+        <p> Location : archery-ed959/Initializtion/Player_data </p>
+    </div>
+    <hr />
+    <hr />
+    <div id="inputs" class="clearfix">
+        <input type="file" id="Statistics_file" name="Statistics_file[]" multiple />
+        <p> Location : archery-ed959/Initializtion/Statistics </p>
+    </div>
+    <hr />
+    <hr />
+    <div id="inputs" class="clearfix">
+        <input type="file" id="Verification_file" name="Verification_file[]" multiple />
+        <p> Location : archery-ed959/Initializtion/Verification </p>
+    </div>
+    
+    <hr />
+    <hr />
+    <strong style="color:Tomato;">注意! 選取完檔案後會直接覆蓋Firebase上的資料!</strong>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://evanplaice.github.io/jquery-csv/src/jquery.csv.js"></script>
+    <p id="demo"></p>
+    <script>
+        var config = {
+            apiKey: "AIzaSyAJDWQ-Y40b2tl6zs7hYuZNqFQYiaq71Dw",
+            authDomain: "archery-ed959.firebaseapp.com",
+            databaseURL: "https://archery-ed959.firebaseio.com",
+            projectId: "archery-ed959",
+            storageBucket: "archery-ed959.appspot.com",
+            messagingSenderId: "107987243756"
+        };
+        firebase.initializeApp(config);
+        $(document).ready(function() {
+          if(isAPIAvailable()) {
+            $('#Player_data_file').bind('change', 'Player_data', handleFileSelect);
+            $('#Statistics_file').bind('change', 'Statistics', handleFileSelect);
+            $('#Verification_file').bind('change', 'Verification', handleFileSelect);
+            //$('#TargetSet_file').bind('change', 'TargetSet', handleFileSelect);
+          }
+        });
+    
+        function isAPIAvailable() {
+            // Check for the various File API support.
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+            // Great success! All the File APIs are supported.
+                return true;
+            } else {
+                // source: File API availability - http://caniuse.com/#feat=fileapi
+                // source: <output> availability - http://html5doctor.com/the-output-element/
+                document.writeln('The HTML5 APIs used in this form are only available in the following browsers:<br />');
+                // 6.0 File API & 13.0 <output>
+                document.writeln(' - Google Chrome: 13.0 or later<br />');
+                // 3.6 File API & 6.0 <output>
+                document.writeln(' - Mozilla Firefox: 6.0 or later<br />');
+                // 10.0 File API & 10.0 <output>
+                document.writeln(' - Internet Explorer: Not supported (partial support expected in 10.0)<br />');
+                // ? File API & 5.1 <output>
+                document.writeln(' - Safari: Not supported<br />');
+                // ? File API & 9.2 <output>
+                document.writeln(' - Opera: Not supported');
+                return false;
+            }
+        }
+
+        function handleFileSelect(evt) {
+            document.getElementById("demo").innerHTML = evt.data + " has been modified";
+            var files = evt.target.files; // FileList object
+            var file = files[0];
+            var reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = function(event){
+            var csv = event.target.result;
+            var data = $.csv.toArrays(csv);
+
+            for(i = 1; i < data.length ; i++) {
+                var ref = firebase.database().ref('/Initialization/' + evt.data + '/' + data[i][0]);
+                var updates = {};
+                for(ii = 1; ii< data[0].length ; ii++){
+                    if(data[i][ii]!=''){
+                        if(isNaN(data[i][ii])){
+                            updates[data[0][ii]] = data[i][ii];
+                        }else{
+                            updates[data[0][ii]] = Number(data[i][ii]);
+                        }
+                    }
+                   
+                }
+                ref.update(updates);
+            }
+          }
+        }
+    </script>
+</body>
+</html>

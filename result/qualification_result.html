@@ -1,0 +1,124 @@
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title></title>
+      <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+      <!--Font Awesome-->
+      <link rel="stylesheet" href="css/font-awesome.min.css">
+      <!--my CSS-->
+      <link rel="stylesheet" href="css/jquery-ui.min.css">
+      <link rel="stylesheet" href="css/viewscore.css">
+      <link rel="stylesheet" href="css/loading.css">
+      
+   </head>
+   <body style="min-height:900px">
+      <div class="container-fluid" align="center" >
+         <div id="resultPage" >
+            <div class="col-xs-12 text-center headerBanner">
+               <h1 id="headname"></h1>
+               <div class="tab" id="page_tab">
+               </div>
+               
+            </div>
+            <div class="row">
+               <div class="col-xs-12">
+                  <div class="tab-content" id="div_tabcontent">
+                     <p>點擊排名可顯示詳細箭值</p>
+           
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="dialog_table" title="">
+         <table class="result_inf">
+            <tr>
+               <td align="right">
+                  排名
+               </td>
+               <td id="det_rank">
+               </td>
+            </tr>
+            <tr>
+               <td align="right">
+                  靶號
+               </td>
+               <td id="det_tar">
+               </td >
+            </tr>
+            <tr>
+               <td align="right">
+                  姓名
+               </td>
+               <td id="det_name">
+               </td>
+            </tr>
+            <tr>
+               <td align="right">
+                  學校
+               </td>
+               <td id="det_school">
+                  </td align="right">
+            </tr>
+            <tr>
+               <td align="right">
+                  成績
+               </td>
+               <td id="det_res">
+               </td>
+            </tr>
+            <tr>
+               <td align="right">
+                  X+10
+               </td>
+               <td id="det_x10">
+               </td>
+            </tr>
+            <tr>
+               <td align="right">
+                  X
+               </td>
+               <td id="det_x">
+               </td>
+            </tr>
+         </table>
+         <br>
+         <table id="details_table" class="result_dia" align="center">
+         </table>
+         <br>
+         <br>
+         <br>
+      </div>
+      <div id="loadingPage">
+         <div class='loader loader1'>
+            <div>
+               <div>
+                  <div>
+                     <div>
+                        <div>
+                           <div></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <footer>
+         <!--jQuery-->
+         <script src="js/jquery-3.2.1.min.js"></script>
+         <!-- Latest compiled and minified JavaScript -->
+         <script src="js/bootstrap.min.js"></script>
+         <!--my js-->
+         <script src="js/result_init.js"></script>
+         <script src="js/qualification_result.js"></script>
+         
+         <script src="js/jquery-ui.min.js"></script>
+      </footer>
+   </body>
+</html>

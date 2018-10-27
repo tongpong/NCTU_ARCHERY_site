@@ -1,0 +1,320 @@
+div.main{
+	width:auto;
+	height:auto;
+	margin-left:30px;
+}
+
+h1 {
+  border-bottom: 1px solid #333;
+  font-size: 32px;
+  color: #fff;
+  padding-bottom: 12px;
+  text-shadow: 0px 0px 2px rgba(0,0,0,0.6);
+}
+
+h2 {
+  color: #000;
+  font-size: 12px;
+  text-shadow: 1px 1px 2px #fff;
+  background-color: rgb(228,10,85);
+  background-image: linear-gradient(bottom, #99BBFF 14%, #5599FF 57%);
+  background-image: -o-linear-gradient(bottom, #99BBFF 14%, #5599FF57%);
+  background-image: -moz-linear-gradient(bottom, #99BBFF 14%, #5599FF 57%);
+  background-image: -webkit-linear-gradient(bottom, #99BBFF 14%,#5599FF 57%);
+  background-image: -ms-linear-gradient(bottom, #99BBFF 14%, #5599FF 57%);
+  min-width:300px;
+  max-width:500px;
+}
+h2 a {
+  display: block;
+  padding: 10px;
+  padding-left: 32px;
+  margin: 0;
+  color: #fff;
+  text-decoration: none;
+  font-weight: normal;
+  border-bottom: 1px solid rgba(128, 10, 85, 0.5);
+  text-shadow: 1px 1px 1px rgb(128,10,85);
+ 
+}
+h2.open  { background: #99BBFF }
+
+h3 {
+  width:200px;
+  margin: 0px;
+  font-size: 10px;
+  background-color: rgb(228,10,85);
+  background-image: linear-gradient(bottom, rgb(228,10,85) 14%, rgb(255,36,111) 57%);
+  background-image: -o-linear-gradient(bottom, rgb(228,10,85) 14%, rgb(255,36,111) 57%);
+  background-image: -moz-linear-gradient(bottom, rgb(228,10,85) 14%, rgb(255,36,111) 57%);
+  background-image: -webkit-linear-gradient(bottom, rgb(228,10,85) 14%, rgb(255,36,111) 57%);
+  background-image: -ms-linear-gradient(bottom, rgb(228,10,85) 14%, rgb(255,36,111) 57%);
+}
+h3 a {
+
+  display: block;
+  padding: 2px;
+  margin: 0px auto;
+  color: #fff;
+  text-decoration: none;
+  font-weight: normal;
+  border-bottom: 1px solid rgba(128, 10, 85, 0.5);
+  text-shadow: 1px 1px 1px rgb(128,10,85);
+  text-align:center;
+  
+}
+
+table.result{
+	width:600px;
+	text-align:center;
+	border:0px solid black;
+	
+}
+th.result_name{
+	width:20%;
+	background:transparent; 
+		
+}
+th.result_school{
+	width:30%;
+	background:transparent; 
+		
+}
+th.result{
+	width:10%;
+	background:transparent; 
+		
+}
+tr.result_name{
+	width:20%;
+	background:transparent; 
+		
+}
+tr.result_school{
+	width:30%;
+	background:transparent; 
+		
+}
+tr.result{
+	width:10%;
+	background:transparent; 
+		
+}
+td.result{
+	background:transparent;
+		
+}
+table.target{
+	width:150px;
+	text-align:center;
+	border:0px solid black;
+	background:transparent;
+	border-collapse:collapse;
+}
+tr.target{
+	text-align:center;
+}
+
+td.target{
+	background:transparent;
+}
+
+td.target_vered{
+	background:transparent;
+	background-color:#FF2D2D;
+	border:#FF2D2D 1px;
+}
+td.target_submitted{
+	background:transparent;
+	background-color:#53FF53;
+	border:#53FF53 1px;
+}
+table.main{
+	width:100%;
+	max-width:700px;
+}
+table.sub{
+	width:100%;
+	max-width:700px;
+	border:0px;
+}
+
+td.main{
+	width:100%;
+}
+td.sub{
+	width:50%;
+	vertical-align:top;
+	border:1px;
+}
+div.main{
+	width:auto;
+	height:auto;
+	margin-left:30px;
+}
+
+h1 {
+  border-bottom: 1px solid #333;
+  font-size: 32px;
+  color: #fff;
+  padding-bottom: 12px;
+  text-shadow: 0px 0px 2px rgba(0,0,0,0.6);
+}
+
+h2 {
+  color: #000;
+  font-size: 12px;
+  text-shadow: 1px 1px 2px #fff;
+  background-color: rgb(228,10,85);
+  background-image: linear-gradient(bottom, #99BBFF 14%, #5599FF 57%);
+  background-image: -o-linear-gradient(bottom, #99BBFF 14%, #5599FF57%);
+  background-image: -moz-linear-gradient(bottom, #99BBFF 14%, #5599FF 57%);
+  background-image: -webkit-linear-gradient(bottom, #99BBFF 14%,#5599FF 57%);
+  background-image: -ms-linear-gradient(bottom, #99BBFF 14%, #5599FF 57%);
+  min-width:300px;
+  max-width:500px;
+}
+h2 a {
+  display: block;
+  padding: 10px;
+  padding-left: 32px;
+  margin: 0;
+  color: #fff;
+  text-decoration: none;
+  font-weight: normal;
+  border-bottom: 1px solid rgba(128, 10, 85, 0.5);
+  text-shadow: 1px 1px 1px rgb(128,10,85);
+ 
+}
+h2.open  { background: #99BBFF }
+
+h3 {
+  width:200px;
+  margin: 0px;
+  font-size: 10px;
+  background-color: rgb(228,10,85);
+  background-image: linear-gradient(bottom, rgb(228,10,85) 14%, rgb(255,36,111) 57%);
+  background-image: -o-linear-gradient(bottom, rgb(228,10,85) 14%, rgb(255,36,111) 57%);
+  background-image: -moz-linear-gradient(bottom, rgb(228,10,85) 14%, rgb(255,36,111) 57%);
+  background-image: -webkit-linear-gradient(bottom, rgb(228,10,85) 14%, rgb(255,36,111) 57%);
+  background-image: -ms-linear-gradient(bottom, rgb(228,10,85) 14%, rgb(255,36,111) 57%);
+}
+h3 a {
+
+  display: block;
+  padding: 2px;
+  margin: 0px auto;
+  color: #fff;
+  text-decoration: none;
+  font-weight: normal;
+  border-bottom: 1px solid rgba(128, 10, 85, 0.5);
+  text-shadow: 1px 1px 1px rgb(128,10,85);
+  text-align:center;
+  
+}
+
+table.result{
+	width:600px;
+	text-align:center;
+	border:0px solid black;
+	
+}
+th.result_name{
+	width:20%;
+	background:transparent; 
+		
+}
+th.result_school{
+	width:30%;
+	background:transparent; 
+		
+}
+th.result{
+	width:10%;
+	background:transparent; 
+		
+}
+tr.result_name{
+	width:20%;
+	background:transparent; 
+		
+}
+tr.result_school{
+	width:30%;
+	background:transparent; 
+		
+}
+tr.result{
+	width:10%;
+	background:transparent; 
+		
+}
+td.result{
+	background:transparent;
+		
+}
+table.target{
+	width:150px;
+	text-align:center;
+	border:0px solid black;
+	background:transparent;
+	border-collapse:collapse;
+}
+tr.target{
+	text-align:center;
+}
+
+td.target{
+	background:transparent;
+}
+
+td.target_vered{
+	background:transparent;
+	background-color:#FF2D2D;
+	border:#FF2D2D 1px;
+}
+td.target_submitted{
+	background:transparent;
+	background-color:#53FF53;
+	border:#53FF53 1px;
+}
+table.main{
+	width:100%;
+	max-width:900px;
+}
+table.sub{
+	width:100%;
+	max-width:500px;
+	border:0px;
+}
+
+td.main{
+	width:400px;
+}
+td.sub{
+	width:50%;
+	vertical-align:top;
+	border:1px;
+}
+
+div.Eplayersel{
+	background-color:	#B7FF4A ;
+	border:1px solid #666666;
+	min-width:120;
+	min-height:80;
+	font-size:24;
+	text-align:center;
+	vertical-align:center;
+}
+
+div.Eplayer{
+	background:transparent ;
+	background-color:rgba(255, 255, 255,0.4) ;
+	min-width:120;
+	min-height:80;
+	border:1px solid #666666;
+	font-size:24;
+	text-align:center;
+	vertical-align:center;
+}
+
