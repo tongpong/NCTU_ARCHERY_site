@@ -550,3 +550,170 @@ function Init_targetVAR(){
     else
         setTimeout(Init_targetVAR,500);
 }
+
+
+//----------------------------------------------------------------
+var result_smbt = document.getElementById("result_smbt");
+var mod_area = document.getElementById("mod_area");
+var message_area = document.getElementById("message_area");
+var wait = 0;
+result_smbt.addEventListener("click", mod_result);
+message_area.style.backgroundColor = '#99FF66';
+message_area.style.color = '#78909C';
+var message_string= "格式為：{對抗賽靶位},{比賽代號[0:'Final',1:'Semi_Final',2:'Quarter',3:'Eighth',4:'Sixteenth']},{波數},{成績1},{成績2},{成績3}）\n換行分隔多筆資料\n";
+message_area.value =message_string;
+
+var rows_raw;
+var MOD_ERROR =["","NO_PLAYER","INPUT_NO_IN_FORMAT","POINT_NO_IN_FORMAT"]
+var error_code = [];
+var mod_temp_area;
+var fail_num=0;
+var rows_remain=0;
+
+
+
+function mod_result() {
+    rows_raw = mod_area.value.toUpperCase().split('\n');
+    var rows_num = rows_raw.length;
+	rows_remain=rows_num;
+	fail_num=0;
+    message_area.value = message_string;
+    mod_temp_area=message_area.value;
+	message_area.style.backgroundColor = '#99FF66';
+    for (var i = 0; i < rows_num; i++) {
+        checked_mod_input(rows_raw[i], i,rows_num);
+    }
+}
+
+function checked_mod_input(rows, rows_id,rows_num) {
+    var rows_val = rows.split(/,|\s+|\t/);
+    var target_in = rows_val[0];
+    var match_type_num=parseInt(rows_val[1]);
+    var match_type=STAGE_NAME[match_type_num];
+    var group=get_group_bytarget(target_in);
+    var ref = firebase.database().ref('Group_Elimination/'+match_type+'/'+group+'/Target_list');
+    var search = ref.once("value").then(function(snapshot) {
+        var val_get = snapshot.val();
+		console.log(group);
+        if (val_get[target_in]) {
+			error_code[rows_id] = 0;
+            upload_result(rows, rows_id, group,rows_num);
+        } else {
+            error_code[rows_id] = 1; //no id
+			rows_remain--;
+			return_mod_error(rows_id,rows_num);
+            console.log("NOTARGET IN:"+rows_id);
+        }
+    });
+}
+
+
+
+function upload_result(rows, rows_id, group,rows_num) {
+    var rows_val = rows.split(/,|\s+|\t/);
+    var target_in = rows_val[0].toUpperCase();
+    var match_type_num=parseInt(rows_val[1]);
+    var match_type=STAGE_NAME[match_type_num];
+    var set = rows_val[2];
+    var X_sum = [0,0];
+    var X_10_sum = [0,0];
+    var M_sum = [0,0];
+    var P_sum = [0,0];
+    var Elim_set_point=[0,0];
+    var ref = firebase.database().ref('/Group_Elimination/'+match_type+'/player_result/set_point/' + group + "/");
+    if (rows_val.length < (GELIM_SCORE_NUM*2+3)) {
+        error_code[rows_id] = 2;
+        console.log("len error")
+    } 
+	else {
+        var offset=3
+        for(var i=0;i<2;i++){
+            for (var j = offset; j <GELIM_SCORE_NUM+offset; j++) {
+                if(rows_val[j]!=""){
+                    if (rows_val[j] == 'X' || rows_val[j] == 'x') {
+                        X_sum[i] += 1;
+                        X_10_sum[i] += 1;
+                        P_sum[i] += 10;
+                    } 
+                    else if (rows_val[j] == 'M' || rows_val[j] == 'm') {
+                        M_sum[i] += 1;
+                    } 
+                    else if (parseInt(rows_val[j]) == 10) {
+                        X_10_sum[i] += 1;
+                        P_sum[i] += 10;
+                    } 
+                    else if (parseInt(rows_val[j]) >= 1 && parseInt(rows_val[j]) <= 9) {
+                        P_sum[i] += parseInt(rows_val[j]);
+                    } 
+                    else {
+                        exclude++;
+                        error_code[rows_id] = 3;
+                    }
+                }
+            }
+            offset+=GELIM_SCORE_NUM;
+        }
+        if(P_sum[0]>P_sum[1]){
+            Elim_set_point=[2,0];
+        }
+        else if(P_sum[0]<P_sum[1]){
+            Elim_set_point=[0,2];
+        }
+        else{
+            Elim_set_point=[1,1];
+        }
+    }
+	if(error_code[rows_id]==0){	
+		var updates={};
+        var playermark=["A","B"];
+        var offset=3;
+        for(var i=0;i<2;i++){
+            var player_id=target_in+playermark[i];
+            for(var j=offset;j<offset+GELIM_SCORE_NUM;j++){
+                updates[player_id+"/"+set+'/P'+(j-offset-1)]=rows_val[j];
+            }
+            updates[player_id+"/"+set+'/P_SUM/']=P_sum[i];
+            updates[player_id+"/"+set+'/X_10_sum/']=X_10_sum[i];
+            updates[player_id+"/"+set+'/X_sum/']=X_sum[i];
+            updates[player_id+"/"+set+'/M_sum/']=M_sum[i];
+            updates[player_id+"/"+set+'/Elim_set_point/']=Elim_set_point[i];
+            offset+=GELIM_SCORE_NUM;
+        }
+		
+		
+	
+        ref.update(updates);
+		rows_remain--;
+	}
+	else{
+		//console.log(rows_num+" "+rows_id);
+		rows_remain--;
+		return_mod_error(rows_id,rows_num);
+	}
+	if(rows_remain==0){
+		mod_temp_area+="總共";
+		mod_temp_area+=rows_num;
+		mod_temp_area+="筆資料:";
+		mod_temp_area+=rows_num-fail_num;
+		mod_temp_area+="筆成功|";
+		mod_temp_area+=fail_num;
+		mod_temp_area+="筆失敗\n";
+		message_area.value = mod_temp_area;
+	}	
+}
+
+function return_mod_error(rows_id,rows_num){
+	if(error_code[rows_id]>0){
+		if(fail_num==0){
+				message_area.style.backgroundColor = "#FFCDD2";
+				mod_temp_area+="下列資料輸入失敗:\n";
+		}
+			fail_num++;
+			mod_temp_area+=rows_raw[rows_id];
+			mod_temp_area+"//";
+			mod_temp_area+=MOD_ERROR[error_code[rows_id]];
+			mod_temp_area+='\n';
+	}
+	
+	
+}
