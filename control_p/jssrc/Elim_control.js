@@ -52,6 +52,7 @@ gen_tree(5);
 function init_EliminationControl(){
     if(Global_got==true){
         if(Match_type=="Elimination"){
+ 
             for(var i=1;i<=MAXTARGET;i++)
                 get_Elimaccsum(i)
         }
@@ -446,8 +447,7 @@ function get_PlayerElimAccSum(group,target,positionID){
                         else if(snapshot.child("/"+j+"/P_SUM").val())
                             acc_sum+=parseInt(snapshot.child(j+"/P_SUM").val());
                     }
-                    console.log(queryStr);
-                    console.log(acc_sum);
+                    
                     update_PlayerElimAccSum(acc_sum,group,target,positionID)
                     
                 }
@@ -469,6 +469,7 @@ function update_PlayerElimAccSum(acc_sum,group,target,positionID){
             }
             else
                 updates["Win"]=null;
+           
             firebase.database().ref(dataA).update(updates);
         
         

@@ -426,7 +426,7 @@ function force_change_stage() {
     var updates = {};
     updates["Match_stage"]="Qualification";
     firebase.database().ref().update(updates);
-    init_match_stage();
+    //init_match_stage();
     refresh_wave();
     
 }

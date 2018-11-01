@@ -71,6 +71,7 @@ function init(){
             Var_got=true;
             
             Global_got=Var_got&Stage_got;
+            MAXTARGET=Total_TARGETNum;
             
         }
         

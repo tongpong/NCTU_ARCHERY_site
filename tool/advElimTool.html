@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Tool</title>
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="jssrc/jquery.collapse.js"></script>
+	<link rel="stylesheet" href="csssrc/control.css">
+    <link rel="stylesheet" href="csssrc/jquery-ui.min.css">
+    <STYLE TYPE="text/css">
+         <!-- 
+            @import url(csssrc/tab.css); 
+            --> 
+      </STYLE>
+</head>
+
+<body bgcolor="	#DDDDDD" valign="top" align="center">
+    <h1 id="stage_name"></h1>
+	<h4 id="wave_num" class="E_search"></h4>
+   <table class="main" valign="top" align="center">
+		<tr>
+		<td class="main">
+				<div class="r2" data-collapse>
+                    <h2><a href="#">修改當前靶位成績</a></h2>
+                    <div id="mul_result_mod">
+						
+									靶號：<input id="Eres_TargetID" size="1"><br>
+							
+                                    A:<input id="Apoint_val" size="20"><br>
+                                    B:<input id="Bpoint_val" size="20"><br>
+                              
+                                    分隔符號：,.*-#+ 空格<br>
+								
+						<button type="submit" id="Qres_smbt" onclick="mod_result()">傳送</button><br><br>
+					
+                <div class="r2" data-collapse>
+                    <h3><a href="#">批量靶位成績</a></h3>
+
+                    <div id="mul_result_mod">
+                        <p>
+                            <textarea id="mod_area" cols="50" rows="10"></textarea>
+							</p>
+							<p>
+						 <textarea id="message_area" cols="50" rows="10" readonly="readonly"></textarea>
+                        </p>
+
+                        <button type="submit" id="result_smbt">傳送</button>
+                        <br>
+
+					</div>
+				 </div>
+				</div>
+					
+				</div>
+        </td>
+		</tr>
+   </table>
+   <div id="confirmPage" style="background:white">
+	
+		<div id="confirm_result_area">
+		</div>
+		<p>確定以上成績無誤？</p>
+	</div>
+    <script src="jssrc/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="jssrc/init_globel.js"></script>
+   <script type="text/javascript" src="jssrc/advElimTool.js"></script>
+</body>
+
+</html>
