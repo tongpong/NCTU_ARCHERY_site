@@ -156,15 +156,23 @@ function create_target(i,j,tree_node,display,idx,lay,repeat,matching){
         p2_cell.addEventListener("click",readtable);
 		var con_stage=(stage_now=="RO16A"||stage_now=="RO16B")?"RO16":stage_now;
 		if(con_stage ==STAGE_NAME[lay]||show_all==1){
-			if(A_data)
+			if(A_data){
 				p1_cell.innerHTML=A_data["Name"]+"("+(A_data["Rank"]+1)+")";
-			else
+                if(A_data["Point_Sum"]!=null){
+                    p1_cell.innerHTML+=" : "+A_data["Point_Sum"];
+                }
+            }
+            else
 				p1_cell.innerHTML="n";	
 		
 		
-			if(B_data)
+			if(B_data){
 				p2_cell.innerHTML=B_data["Name"]+"("+(B_data["Rank"]+1)+")";
-			else if(A_data)
+                if(B_data["Point_Sum"]!= null){
+                    p2_cell.innerHTML+=" : "+B_data["Point_Sum"];
+                }
+            }
+            else if(A_data)
 				p2_cell.innerHTML="輪控";	
 			else 
 				p2_cell.innerHTML="n";	

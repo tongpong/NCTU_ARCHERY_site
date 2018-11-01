@@ -53,6 +53,10 @@ gen_tree(5);
 
 function init_GEliminationControl(){
     if(Global_got==true){
+        if(Match_type=="Group_Elimination"){
+            for(var i=1;i<=MAXTARGET;i++)
+                get_Elimaccsum(i)
+        }
         checked_win();
         get_target_inf();
         var ref2 = firebase.database().ref('/Group_Elimination');
@@ -133,7 +137,7 @@ function GEN_GRankList(snapshot,player_snap){
         }
         var updates={};
         for(var i=0;i<PlAYER_GROUP.length;i++){
-			Group_list[i].sort(compare);
+			Group_list[i].sort(Rankcompare);
 			updates["/Qual_Ranking/"+PlAYER_GROUP[i]]=Group_list[i];
 		}
         firebase.database().ref('/Group_Elimination').update(updates);
@@ -464,53 +468,7 @@ function get_position(rank,level){//rank start from 0
 	
 }
 
-function find_max_target(stage){
-	if(stage=="Sixteenth"){
-			return 32;
-		}
-		else if(stage=="Eighth"){
-			return 16;
-		}
-		else if(stage=="Quarter"){
-			return 8;
-		}
-		
-		else return  4;
-	
-}
 
-function find_next_EStage(stage){
-		if(stage=="Sixteenth"){
-			return "Eighth";
-		}
-		else if(stage=="Eighth"){
-			return  "Quarter";
-		}
-		else if(stage=="Quarter"){
-			return  "Semi_Final";
-		}
-		
-		else return  "Final";
-}
-function compare(a, b) {
-    if (a["Q_sum"] < b["Q_sum"]){ 
-		
-	return 1;}
-    else if (a["Q_sum"] > b["Q_sum"]) return -1;
-    else {
-        if (a["Q_X_10_sum"] < b["Q_X_10_sum"]) return 1;
-        else if (a["Q_X_10_sum"] > b["Q_X_10_sum"]) return -1;
-        else {
-            if (a["Q_X_sum"] < b["Q_X_sum"]) return 1;
-            else if (a["Q_X_sum"] > b["Q_X_sum"]) return -1;
-            else {
-                if (a["Q_M_sum"] > b["Q_M_sum"]) return 1;
-                else if (a["Q_M_sum"] < b["Q_M_sum"]) return -1;
-                else return 0;
-            }
-        }
-    }
-}
 function Setting_ver(){
     init_ver_code_finish=false;
     init_ver_code();
@@ -550,7 +508,60 @@ function Init_targetVAR(){
     else
         setTimeout(Init_targetVAR,500);
 }
+function get_Elimaccsum(target){
+    console.log("get_Elimaccsum "+ target)
+    var player_num=2;
+    var group=get_group_bytarget(target);
+    for(var i=0;i< player_num;i++){
+        get_PlayerElimAccSum(group,target,i);
+    }
+}
 
+function get_PlayerElimAccSum(group,target,positionID){
+        var queryStr=Match_stage+'/player_result/set_point/' + group + "/" + target + POSITION_POINT[positionID];
+        var ref = firebase.database().ref(queryStr);
+        var search = ref.once("value").then(function(snapshot) {
+                var acc_sum=0;
+                if(snapshot.val()){
+                    
+                    for(j = 1;j<=ELIM_SET_NUM;j++){
+                        if(ELIM_POINT_SYSTEM[get_groupID(group)] ==1){
+                            if(snapshot.child(j+"/Elim_set_point").val()){
+                                acc_sum+=parseInt(snapshot.child(j+"/Elim_set_point").val());
+
+                            }
+                        }
+                        else if(snapshot.child("/"+j+"/P_SUM").val())
+                            acc_sum+=parseInt(snapshot.child(j+"/P_SUM").val());
+                    }
+                    console.log(queryStr);
+                    console.log(acc_sum);
+                    update_PlayerElimAccSum(acc_sum,group,target,positionID)
+                    
+                }
+            });
+}
+
+function update_PlayerElimAccSum(acc_sum,group,target,positionID){
+    console.log("update_Elimaccsum "+target)
+    var querystr=Match_stage+"/"+get_group_bytarget(target)+'/';
+    var ref=firebase.database().ref(querystr+"Target_list/"+target+"/tree_node");
+    var search = ref.once("value").then(function(snapshot) {
+
+            var Target_node=snapshot.val()
+            var dataA=Match_stage+"/"+group+"/"+Target_node+"/"+POSITION_POINT[positionID];
+            var updates={};
+            updates["Point_Sum"]=acc_sum;
+            if(acc_sum>=WIN_point){
+                updates["Win"]=true;
+            }
+            else
+                updates["Win"]=null;
+            firebase.database().ref(dataA).update(updates);
+        
+        
+    });
+}
 
 //----------------------------------------------------------------
 var result_smbt = document.getElementById("result_smbt");
@@ -560,7 +571,7 @@ var wait = 0;
 result_smbt.addEventListener("click", mod_result);
 message_area.style.backgroundColor = '#99FF66';
 message_area.style.color = '#78909C';
-var message_string= "格式為：{對抗賽靶位},{比賽代號[0:'Final',1:'Semi_Final',2:'Quarter',3:'Eighth',4:'Sixteenth']},{波數},{成績1},{成績2},{成績3}）\n換行分隔多筆資料\n";
+var message_string= "換行分隔多筆資料\n";
 message_area.value =message_string;
 
 var rows_raw;
