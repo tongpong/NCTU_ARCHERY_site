@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Tool</title>
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="jssrc/jquery.collapse.js"></script>
+	<link rel="stylesheet" href="csssrc/control.css">
+    <STYLE TYPE="text/css">
+         <!-- 
+            @import url(csssrc/tab.css); 
+            --> 
+      </STYLE>
+</head>
+
+<body bgcolor="	#DDDDDD">
+   <table class="main" valign="top" align="center">
+		<tr>
+		<td class="main">
+				<div class="r2" data-collapse>
+                    <h2><a href="#">靶位成績</a></h2>
+                    <div id="mul_result_mod">
+						<table border="0"><tr>
+								<td valign="top">
+									靶號：<input type="tel" id="Qres_target" size="1"><br>
+									<span id="singmessage"></span>
+								</td>
+								<td>
+									A:<input type="tel" id="Qres_A" size="20"><br><br>
+									B:<input type="tel" id="Qres_B" size="20"><br><br>
+									C:<input type="tel" id="Qres_C" size="20"><br><br>
+									D:<input type="tel" id="Qres_D" size="20"><br><br> 
+								</td>
+								<td>
+									格式為：{第1波},{第2波},{第3波},{第4波},{第5波},{第6波},{X+10},{X}<br>
+                                    分隔符號：,.*-#+ 空格
+								</td>
+								</tr>	
+                        </table>
+						<button type="submit" id="Qres_smbt">傳送</button><br><br>
+					
+                <div class="r2" data-collapse>
+                    <h3><a href="#">批量靶位成績</a></h3>
+
+                    <div id="mul_result_mod">
+                        <p>
+                            <textarea id="mod_area" cols="50" rows="10"></textarea>
+							</p>
+							<p>
+						 <textarea id="message_area" cols="50" rows="10" readonly="readonly"></textarea>
+                        </p>
+
+                        <button type="submit" id="result_smbt">傳送</button>
+                        <br>
+
+					</div>
+				 </div>
+				</div>
+					
+				</div>
+				 <div class="r2" data-collapse>
+                    <h2 data-collapse-summary="" class="open"><a href="#">對抗賽記錄台</a></h2>
+					
+                   <div id="mul_result_mod" valign="top" align="center" aria-hidden="false" style="display: block;">
+						<div class="tab" id="sub_tab">
+							<button class="tablinks2 active" onclick="sub_sel(event,0)">個人賽</button>
+							<button class="tablinks2" onclick="sub_sel(event,1)">團體賽</button>
+						</div>
+						<h1 id="stage_name"></h1>
+						<h4 id="wave_num" class="E_search"></h4>
+						靶號：
+                        <input type="text" id="E_target" size="1">
+
+                        <button type="submit" id="Eresult_smbt">搜索</button>
+                        <table><tr>
+						<td>
+						<div id="player1_area"  class="Eplayer">
+						</div>
+						</td>
+						<td>
+						<div id="player2_area"  class="Eplayer">
+						</div>
+						</td>
+						</tr></table>
+						<button type="submit" id="Esel_smbt">確定</button>
+				</div>
+                </div>
+        </td>
+		</tr>
+   </table>
+    <script type="text/javascript" src="jssrc/init_globel.js"></script>
+   <script type="text/javascript" src="jssrc/tool.js"></script>
+</body>
+
+</html>
