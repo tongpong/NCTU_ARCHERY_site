@@ -324,10 +324,10 @@ function submit_winner(){
 	if(select_result==0){
 		 var updates={};
 		 updates["Win"]=true;
-         updates["Judge"]=true;
+         updates["Judge_Win"]=true;
 		 firebase.database().ref(Match_type+"/"+dataA).update(updates);
 		 updates["Win"]=null;
-         updates["Judge"]=true;
+         updates["Judge_Win"]=false;
 		 firebase.database().ref(Match_type+"/"+dataB).update(updates);
 		 window.alert("A 勝");
 		 reset_sel();
@@ -335,9 +335,11 @@ function submit_winner(){
 	else if(select_result==1){
 		var updates={};
 		 updates["Win"]=true;
+         updates["Judge_Win"]=true;
 		 firebase.database().ref(Match_type+"/"+dataB).update(updates);
 		 updates["Win"]=null;
-		 firebase.database().ref(Match_type+"/"+dataA).update(updates);
+		 updates["Judge_Win"]=false;
+         firebase.database().ref(Match_type+"/"+dataA).update(updates);
 		window.alert("B 勝");
 		reset_sel();
 	}

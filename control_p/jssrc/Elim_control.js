@@ -306,21 +306,25 @@ function search_win(data,group,stage){
             console.log(s_node);
             console.log(groupA);
             if(groupA["win"]){
+               groupA["win"]["Judge_Win"]=[];
                groupA["win"]["Win"]=[];
                update_node( groupA["win"],group,stage_ID-1,nextStage_node+"/A")
             }
             if(groupB["win"]){
+                groupB["win"]["Judge_Win"]=[];
                groupB["win"]["Win"]=[];
                update_node(groupB["win"],group,stage_ID-1,nextStage_node+"/B")
             }
             if(stage=="Semi_Final"){
                 nextStage_node+=1;
                 if(groupA["loss"]){
-                    
+                    groupA["loss"]["Judge_Win"]=[];
+                    groupA["loss"]["Win"]=[];
                     update_node(groupA["loss"],group,stage_ID-1,nextStage_node+"/A")
                 }
                 if(groupB["loss"]){
-                   
+                   groupB["loss"]["Judge_Win"]=[];
+                   groupB["loss"]["Win"]=[];
                    update_node(groupB["loss"],group,stage_ID-1,nextStage_node+"/B")
                 }
                 s_node+=2;
@@ -335,7 +339,18 @@ function search_win(data,group,stage){
 function check_winner(data_val){
     var group={};
     if(typeof(data_val["A"])!="undefined"){
-       if(data_val["A"]["Win"]==true){
+       if(data_val["A"]["Win"]&&data_val["B"]["Win"]){
+        if(data_val["A"]["Judge_Win"]==true){
+            group["win"]=data_val["A"];
+            group["loss"]=data_val["B"];
+        }
+        else if(data_val["B"]["Judge_Win"]==true){
+            group["win"]=data_val["B"];
+            group["loss"]=data_val["A"];
+            
+        }
+       }
+       else if(data_val["A"]["Win"]==true){
             group["win"]=data_val["A"];
             group["loss"]=data_val["B"];
            
