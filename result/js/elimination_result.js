@@ -146,6 +146,11 @@ function create_target(i,j,tree_node,display,idx,lay,repeat,matching){
 			A_win=database.child(ret+"/A/Win").val();
 			B_win=database.child(ret+"/B/Win").val();
 		}
+        
+        if(A_win&&B_win){
+            A_win=database.child(ret+"/A/Judge_Win").val();
+			B_win=database.child(ret+"/B/Judge_Win").val();
+        }
 		
 		
 		
@@ -301,7 +306,12 @@ function readtable() {
 	document.getElementById("det_school").innerHTML=player_info["School"];
     document.getElementById("det_res").innerHTML=Psum;
 	document.getElementById("det_Epoint").innerHTML=Elim_Psum;
-
+    console.log(player_info)
+    if(player_info["Judge_Win"])
+        document.getElementById("judge").innerHTML="裁判同分判決"
+    else{
+        document.getElementById("judge").innerHTML=""
+    }
         dialog.dialog( "open" );
 }
 

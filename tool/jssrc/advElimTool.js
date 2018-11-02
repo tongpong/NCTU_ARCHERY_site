@@ -280,7 +280,7 @@ function search_target(){
 		}
 		if(player_b){
             var pb_data=player_b["Name"];
-            if(match_mode=="Elimination")pb_data+="<br>"+player_b["School"];
+            if(Match_type=="Elimination")pb_data+="<br>"+player_b["School"];
 		document.getElementById("player2_area").innerHTML=pb_data;
 		document.getElementById("player2_area").setAttribute("class","Eplayer");
 		document.getElementById("player2_area").addEventListener("click",select_win);
