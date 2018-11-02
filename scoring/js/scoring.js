@@ -1,9 +1,9 @@
+
 // init_scoringialize Firebase
 $("#loadingPage").show();
 $("#scoringPage").hide();
 $("#verifyPage").hide();
 $("#waitingPage").hide();
-init_global();
 //window.addEventListener('load', init_scoring);
 
 
@@ -13,6 +13,10 @@ $("ul.nav-tabs a").click(function(e) {
     e.preventDefault();
     $(this).tab('show');
 });
+
+InitFunction= function(){
+    init_scoring();
+}
 
 var ver_code = document.getElementById("verifyCode");
 var ver_smbutton = document.getElementById("btnSubmitCode");
@@ -25,7 +29,6 @@ var player_school = ["", "", "", ""];
 var player_name = ["", "", "", ""];
 var player_group = ["", "", "", ""];
 var target;
-var set;
 var final_set=0;
 var scoreNum=0; 
 
@@ -136,12 +139,9 @@ function init_scoring() {
 
 
 function verification_process(cookie_vercode_raw,match_type){
-    var ref_set = firebase.database().ref(match_type+'/wave');
-    var search_set = ref_set.on("value",function(snapshot) {
-            set = snapshot.val();
-            
+  
             console.log(Match_stage);
-            document.getElementById("wave_num").innerHTML = parseInt(set);
+            document.getElementById("wave_num").innerHTML = parseInt(Match_Wave);
             document.getElementById("match_type").innerHTML=Match_Cstage;
             var ref = firebase.database().ref('/Verification/' + cookie_vercode_raw);
             var search = ref.once("value").then(function(snapshot) {
@@ -149,7 +149,7 @@ function verification_process(cookie_vercode_raw,match_type){
                 console.log(player_num)
                 if(ElIM_Match){
                     player_num=2;
-                    if(final_set==set){
+                    if(final_set==Match_Wave){
                         (Match_type=="Elimination")?scoreNum=1:scoreNum=scoreNum;
                     }
                 }
@@ -160,13 +160,13 @@ function verification_process(cookie_vercode_raw,match_type){
                 console.log(mobile_status);
                 var cookie_code = getCookie("cookie_vercode");
                 target = getCookie("cookie_target");
-                console.log("final:"+final_set+" set:"+set+" finish:"+finish_wave);
+                console.log("finish_wave:"+finish_wave+" Match_Wave:"+Match_Wave);
                 
                 if (cookie_code == ver_mobile_exc) {
+                    console.log("finish_wave:"+finish_wave+" Match_Wave:"+Match_Wave);
                     ver_stage=1;
                     console.log(mobile_status=="END");
                     if(mobile_status=="END"){
-                        set=finish_wave;
                         console.log("e_END");
                        gen_accsum(snapshot);
                        document.getElementById("succ_msg").innerHTML="傳送成功!<br>請等待下一波比賽";
@@ -184,11 +184,11 @@ function verification_process(cookie_vercode_raw,match_type){
                        
                         $("#waitingPage").show();
                     }
-                    else if (finish_wave == set) {
+                    else if (finish_wave == Match_Wave) {
 						console.log("finish set");
                         $("#scoringPage").hide();
 						$("#verifyPage").hide();
-						if(set==final_set) 
+						if(Match_Wave==final_set) 
                             document.getElementById("succ_msg").innerHTML="傳送成功!<br>比賽結束";
                         else
                             document.getElementById("succ_msg").innerHTML="傳送成功!<br>請等待下一波比賽";
@@ -196,14 +196,14 @@ function verification_process(cookie_vercode_raw,match_type){
                         $("#waitingPage").show();
 						
                     }
-					else if(finish_wave != (set-1)){
+					else if(finish_wave != (Match_Wave-1)){
 						console.log("reload");
                         $("#scoringPage").hide();
 						$("#verifyPage").hide();
 						$("#waitingPage").show();
 						var ref2 = firebase.database().ref('/Verification/' + cookie_vercode_raw);
 						var updates_finished_set = {};
-						updates_finished_set["/finish_wave"] = set-1;
+						updates_finished_set["/finish_wave"] = Match_Wave-1;
 						ref2.update(updates_finished_set);
 						location.reload();
 					}
@@ -216,7 +216,8 @@ function verification_process(cookie_vercode_raw,match_type){
                         $("#scoringPage").show();
                     }
 
-                } else {
+                } 
+                else {
                     ver_stage=0;
 					$("#waitingPage").hide();
                     $("#scoringPage").hide();
@@ -226,11 +227,11 @@ function verification_process(cookie_vercode_raw,match_type){
                 }
                 console.log("ver_stage");
             });
-        });
+
 }
 
 function player_data_init_scoring() {
-    console.log(player_num);
+    console.log("player_data_init_scoring");
     if(Match_stage=="Qualification"){
         for (var i = 0; i < player_num; i++) {
             Qualification_player_data_init(i,0);
@@ -248,7 +249,7 @@ function player_data_init_scoring() {
 
 
 function Qualification_player_data_init(position,getsum){
-        console.log("init data:"+ position)
+        console.log("Qualification_player_data_init:"+ position)
         var ref = firebase.database().ref('/Player_data/' + target + POSITION_POINT[position]);
         var search = ref.once("value").then(function(snapshot) {
         player_school[position] = snapshot.child("School").val();
@@ -265,10 +266,10 @@ function Qualification_player_data_init(position,getsum){
 }
 
 function Elimination_player_data_init(getsum){
+    console.log("Elimination_player_data_init");
     var querystr=Match_stage+"/"+get_group_bytarget(target)+'/';
     var ref = firebase.database().ref(querystr+'Target_list/'+target+"/tree_node");
     var search = ref.once("value").then(function(snapshot) {
-        console.log(querystr+snapshot.val());
         var ref_node = firebase.database().ref(querystr+snapshot.val());
         var search_node = ref_node.once("value").then(function(snapshot_node) {
             for(var i = 0; i < 2; i++){
@@ -386,7 +387,7 @@ function addTable() {
         $table.append("<tbody><tr>");
         var $row = $table.find("tr:last");
 
-        for (j = 1; j <= scoreNum; j++) {
+        for (var j = 1; j <= scoreNum; j++) {
             $row.append("<td>");
             $row.children("td:last").addClass("tableData").attr("id", "td" + i + j);
             $row.children("td:last").html("\xa0");
@@ -399,7 +400,7 @@ function addTable() {
         $div.append($table);
         $("#scoreTable").append($div);
         if (set_result[i - 1][0] != " ") {
-            for (j = 1; j <= scoreNum; j++) {
+            for (var j = 1; j <= scoreNum; j++) {
                 var tdid = "td" + i + j;
                 $("#" + tdid).html(set_result[i - 1][j - 1]);
                 setTotalScore(tdid, tbid, set_result[i - 1][j - 1]);
@@ -458,7 +459,7 @@ $("#keypad .btn").click(function() {
             $("#" + selectedTable + " td").html("\xa0");
             targetID = $("#" + selectedTable + " td:first").attr("id");
             var row = selectedTable[1] - 1;
-            for (i = 0; i < scoreNum; i++) {
+            for (var i = 0; i < scoreNum; i++) {
                 set_result[row][i] = " ";
             }
 
@@ -535,7 +536,7 @@ function cal_result() {
     for (var i = 0; i < player_num; i++) {
 		set_result[i].sort(compare);
         console.log(set_result[i]);
-		for (j = 0; j < scoreNum; j++) {
+		for (var j = 0; j < scoreNum; j++) {
             if (set_result[i][j] == " " || set_result[i][j] == "M") {
                 set_m_total[i] += 1;
 				set_result[i][j] ="M";
@@ -581,7 +582,7 @@ function confirm_result(){
             if (ver_mobile_exc != cookie_code) {
                 alert("驗證碼已過期！ 請尋找附近裁判或工作人員！");
                 location.reload();
-            } else if (set == finish_wave) {
+            } else if (Match_Wave == finish_wave) {
                 alert("重複輸入！ 請等待下一波！ 如有需要請尋找附近裁判");
 				location.reload();
             } else {
@@ -612,15 +613,15 @@ function send_Qualification_result(snapshot){
         var ref = firebase.database().ref(Match_stage+'/player_result/set_point/' + player_group[i] + "/" + target + POSITION_POINT[i]);
         var updates = {};
         for(var j=0;j<scoreNum;j++){
-            updates[set + '/P'+(j+1)] = set_result[i][j];
+            updates[Match_Wave + '/P'+(j+1)] = set_result[i][j];
         }
         
-        updates[set + '/P_SUM/'] = set_total[i];
-        updates[set + '/X_10_sum/'] = set_x_10_total[i];
-        updates[set + '/X_sum/'] = set_xtotal[i];
-        updates[set + '/M_sum/'] = set_m_total[i];
+        updates[Match_Wave + '/P_SUM/'] = set_total[i];
+        updates[Match_Wave + '/X_10_sum/'] = set_x_10_total[i];
+        updates[Match_Wave + '/X_sum/'] = set_xtotal[i];
+        updates[Match_Wave + '/M_sum/'] = set_m_total[i];
         if(ElIM_Match&ELIM_POINT_SYSTEM[get_groupID(player_group[0])]==1){
-             updates[set + '/Elim_set_point/'] = elim_set_point[i];
+             updates[Match_Wave + '/Elim_set_point/'] = elim_set_point[i];
         }
         ref.update(updates);
     }
@@ -628,9 +629,9 @@ function send_Qualification_result(snapshot){
     var cookie_vercode_raw = getCookie("cookie_vercode_raw");
     var ref2 = firebase.database().ref('/Verification/' + cookie_vercode_raw);
     var updates_finished_set = {};
-    updates_finished_set["/finish_wave"] = set;
+    updates_finished_set["/finish_wave"] = Match_Wave;
 	ref2.update(updates_finished_set);
-    console.log(set);
+    console.log(Match_Wave);
 	console.log(finish_wave);
 	console.log("send finish");
 	$("#loadingPage").show();
@@ -643,22 +644,31 @@ function send_Qualification_result(snapshot){
 function gen_accsum(snapshot){
 	console.log("gen_sum:"+player_num);
     var finish_wave = snapshot.child("/finish_wave").val();	
-	for (var i = 0; i < player_num; i++) {
-		Qualification_player_data_init(i,1);
-		
+	if(Match_type=="Qualification"){
+        for (var i = 0; i < player_num; i++) {
+            Qualification_player_data_init(i,1);
+        }
     }
+    else if(Match_type=="Elimination"){
+        Elimination_player_data_init(1);
+    }
+    else if(Match_type=="Group_Elimination"){
+        GElimination_player_data_init(1);
+    }
+		
+    
 	
 }
 
 function get_accsum(position){
-	Q_sum[position]=0;
-	console.log(position);
-	console.log(player_group);
-	console.log(player_group[0].toString());
+	
     var ref = firebase.database().ref(Match_stage+'/player_result/set_point/' + player_group[position] + "/" + target + POSITION_POINT[position]);
 	var search = ref.once("value").then(function(snapshot) {
+            Q_sum[position]=0;
             
-			for(j = 1;j<=set;j++){
+            console.log(Match_Wave)
+            
+			for(var j = 1;j<=Match_Wave;j++){
                 if(ElIM_Match&ELIM_POINT_SYSTEM[get_groupID(player_group[0])]==1){
                     Q_sum[position]+=parseInt(snapshot.child(j+"/Elim_set_point").val());
                     if(Q_sum[position]>=WIN_point){
@@ -671,9 +681,8 @@ function get_accsum(position){
 			}
 		
 			if(position==(player_num-1)){
-				
 				var acc_sum_out="";
-				for(k=0;k<player_num;k++){
+				for(var k=0;k<player_num;k++){
                     var player_ID=target+POSITION_POINT[k];
                     if(Match_type=="Group_Elimination"){
                         player_ID=parseInt(target)+k;

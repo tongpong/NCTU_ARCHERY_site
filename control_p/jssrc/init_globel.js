@@ -28,6 +28,7 @@ var Match_stage='';
 var Match_Cstage='';
 var Match_type='';
 var Match_subtype='';
+var Match_Wave=0;
 var ElIM_Match=false;
 var Elim_targetbase;
 var Target_Distance;
@@ -43,6 +44,7 @@ var GELIM_SCORE_NUM;
 
 window.addEventListener('load', init);
 function init(){
+    Var_got=false;
     var ref = firebase.database().ref('/Statistics/');
     var search = ref.once("value").then(function(snapshot) {
         if(snapshot!=null){
@@ -72,7 +74,6 @@ function init(){
             
             Global_got=Var_got&Stage_got;
             MAXTARGET=Total_TARGETNum;
-            
         }
         
     }).catch(
@@ -83,6 +84,12 @@ function init(){
         }
     );
     
+    init_matchStage();
+
+}
+
+function init_matchStage(){
+    Stage_got=false;
     var ref_stage= firebase.database().ref('/Match_stage');
     var search = ref_stage.on("value",function(snapshot) {
         if(snapshot!=null){
@@ -92,7 +99,8 @@ function init(){
             var Match_stage_tmp=Match_stage.split("/");
             Match_type=Match_stage_tmp[0];
             Match_Cstage=Match_CTYPE[find_match_id(Match_type)]
-            if(Match_stage_tmp.length>0){
+            console.log(Match_stage_tmp[1]==undefined)
+            if(Match_stage_tmp.length>0&&Match_stage_tmp[1]!=undefined){
                 Match_subtype=Match_stage_tmp[1];
                 Match_Cstage+="/"+STAGE_CNAME[find_stage_id(Match_subtype)];
             }
@@ -102,10 +110,12 @@ function init(){
             ElIM_Match=(Match_type=="Elimination"||Match_type=="Group_Elimination");
             Stage_got=true;
             Global_got=Var_got&Stage_got;
-
+            var ref_wave=firebase.database().ref(Match_type+"/wave").on("value",function(snapshot){
+                Match_Wave=snapshot.val();
+                
+            });
         }
     });
-
 }
 
 function get_groupID(group){

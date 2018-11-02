@@ -16,6 +16,7 @@ var PlAYER_GROUP = [];
 var Player_count=[];
 var PlAYER_GROUP_ch=[];
 var Total_TARGETNum;
+var MAXTARGET=Total_TARGETNum;
 var Elim_top=[];
 var Team_top=[];
 var start_target={};
@@ -27,20 +28,23 @@ var Match_stage='';
 var Match_Cstage='';
 var Match_type='';
 var Match_subtype='';
+var Match_Wave=0;
 var ElIM_Match=false;
 var Elim_targetbase;
 var Target_Distance;
 var ELIM_POINT_SYSTEM;
 var WIN_point=0;
+
 var QUAL_SET_NUM;
 var ELIM_SET_NUM;
 var GELIM_SET_NUM;
 var QUAL_SCORE_NUM;
 var ELIM_SCORE_NUM;
 var GELIM_SCORE_NUM;
-
+var InitFunction;
 window.addEventListener('load', init);
 function init(){
+    Var_got=false;
     var ref = firebase.database().ref('/Statistics/');
     var search = ref.once("value").then(function(snapshot) {
         if(snapshot!=null){
@@ -55,7 +59,7 @@ function init(){
             Elim_targetbase=snapshot.child("Elim_targetbase").val();
             Match_name=snapshot.child("Match_name/0").val();
             start_target=snapshot.child("Target_start").val();
-            Total_TARGETNum=snapshot.child("Total_TARGETNum").val();
+            Total_TARGETNum=snapshot.child("Total_TARGETNum").val()[0];
             Target_Distance=snapshot.child("Target_Distance").val();
             ELIM_POINT_SYSTEM=snapshot.child("ELIM_POINT_SYSTEM").val();
             
@@ -65,12 +69,11 @@ function init(){
             QUAL_SCORE_NUM=snapshot.child("Qual_arrow_NUM").val()[0];
             ELIM_SCORE_NUM=snapshot.child("Elim_arrow_NUM").val()[0];
             GELIM_SCORE_NUM=snapshot.child("GElim_arrow_NUM").val()[0];
-            console.log(QUAL_SET_NUM)
-            console.log(PlAYER_GROUP);
+          
             Var_got=true;
             
             Global_got=Var_got&Stage_got;
-            
+            MAXTARGET=Total_TARGETNum;
         }
         
     }).catch(
@@ -81,16 +84,23 @@ function init(){
         }
     );
     
+    init_matchStage();
+
+}
+
+function init_matchStage(){
+    Stage_got=false;
     var ref_stage= firebase.database().ref('/Match_stage');
     var search = ref_stage.on("value",function(snapshot) {
         if(snapshot!=null){
-            console.log(snapshot);
+         
             Match_stage = snapshot.val();
+
             var Match_stage_tmp=Match_stage.split("/");
             Match_type=Match_stage_tmp[0];
             Match_Cstage=Match_CTYPE[find_match_id(Match_type)]
-            
-            if(Match_stage_tmp.length>1){
+            console.log(Match_stage_tmp[1]==undefined)
+            if(Match_stage_tmp.length>0&&Match_stage_tmp[1]!=undefined){
                 Match_subtype=Match_stage_tmp[1];
                 Match_Cstage+="/"+STAGE_CNAME[find_stage_id(Match_subtype)];
             }
@@ -98,12 +108,17 @@ function init(){
             
             (Match_type=="Elimination")? WIN_point=6:WIN_point=5;
             ElIM_Match=(Match_type=="Elimination"||Match_type=="Group_Elimination");
-            Stage_got=true;
-            Global_got=Var_got&Stage_got;
-            console.log(ElIM_Match);
+            console.log(Match_type)
+            var ref_wave=firebase.database().ref(Match_type+"/wave").on("value",function(snapshot){
+                Match_Wave=snapshot.val();
+                
+                Stage_got=true;
+                Global_got=Var_got&Stage_got;
+                console.log(InitFunction)
+                InitFunction();
+            });
         }
     });
-
 }
 
 function get_groupID(group){
@@ -113,7 +128,7 @@ function get_groupID(group){
 }
 
 function get_group_bytarget(target_in){
-    console.log(start_target);
+  
     for(var i=PlAYER_GROUP.length-1;i>=0;i--){
         
         if(target_in>=start_target[PlAYER_GROUP[i]])
@@ -140,5 +155,54 @@ function find_stage_id(stage){
 function find_match_id(match){
     for(var i=0;i<Match_TYPE.length;i++){
         if(match==Match_TYPE[i]) return i;
+    }
+}
+
+function find_max_target(stage){
+	if(stage=="Sixteenth"){
+			return 32;
+		}
+		else if(stage=="Eighth"){
+			return 16;
+		}
+		else if(stage=="Quarter"){
+			return 8;
+		}
+		
+		else return  4;
+	
+}
+
+function find_next_EStage(stage){
+		if(stage=="Sixteenth"){
+			return "Eighth";
+		}
+		else if(stage=="Eighth"){
+			return  "Quarter";
+		}
+		else if(stage=="Quarter"){
+			return  "Semi_Final";
+		}
+		
+		else return  "Final";
+}
+
+function Rankcompare(a, b) {
+    if (a["Q_sum"] < b["Q_sum"]){ 
+		
+	return 1;}
+    else if (a["Q_sum"] > b["Q_sum"]) return -1;
+    else {
+        if (a["Q_X_10_sum"] < b["Q_X_10_sum"]) return 1;
+        else if (a["Q_X_10_sum"] > b["Q_X_10_sum"]) return -1;
+        else {
+            if (a["Q_X_sum"] < b["Q_X_sum"]) return 1;
+            else if (a["Q_X_sum"] > b["Q_X_sum"]) return -1;
+            else {
+                if (a["Q_M_sum"] > b["Q_M_sum"]) return 1;
+                else if (a["Q_M_sum"] < b["Q_M_sum"]) return -1;
+                else return 0;
+            }
+        }
     }
 }

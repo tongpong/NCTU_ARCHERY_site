@@ -41,7 +41,7 @@ var GELIM_SET_NUM;
 var QUAL_SCORE_NUM;
 var ELIM_SCORE_NUM;
 var GELIM_SCORE_NUM;
-
+var InitFunction;
 window.addEventListener('load', init);
 function init(){
     Var_got=false;
@@ -73,7 +73,7 @@ function init(){
             Var_got=true;
             
             Global_got=Var_got&Stage_got;
-            
+            MAXTARGET=Total_TARGETNum;
         }
         
     }).catch(
