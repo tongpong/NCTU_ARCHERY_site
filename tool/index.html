@@ -17,6 +17,8 @@
       <object  id="content" width="100%" height="100%" type="text/html"></object >
         <script type="text/javascript" src="jssrc/init_globel.js"></script>
         <script type="text/javascript">
+			var height=document.body.clientHeight;
+			$("#content").attr("height",height);
             if(Match_type==="Qualification"){
                 $("#content").attr("data","advQualTool.html");
             }

@@ -59,6 +59,7 @@ function init_GEliminationControl() {
         checked_win();
         get_target_inf();
         var ref2 = firebase.database().ref('/Group_Elimination');
+		//ref2.remove();
         var search2 = ref2.once("value").then(function(snapshot) {
 
             var stage = stage_trans(snapshot.child("Stage").val());
@@ -191,8 +192,9 @@ function init_GElimStage0(stage_ID, group_id, print_data, MAX_target, GRank_list
     var E_match_ID = top_convert(Team_top[group_id])
     if (E_match_ID >= stage_ID) {
         console.log(PlAYER_GROUP[group_id] + " " + STAGE_NAME[stage_ID]);
+		console.log(Elim_targetbase)
         var updates = {};
-        if (MAX_target < Elim_targetbase[group_id] && Target_Distance[group_id] != Target_Distance[group_id - 1])
+        if (MAX_target < Elim_targetbase[group_id])
             MAX_target = Elim_targetbase[group_id];
         start_target[PlAYER_GROUP[group_id]] = MAX_target;
         var s_ptr, e_ptr;
@@ -204,7 +206,7 @@ function init_GElimStage0(stage_ID, group_id, print_data, MAX_target, GRank_list
             var tree_node = get_position(s_ptr, stage_ID);
 
             updates = set_GElimPlayer(updates, tree_node, s_ptr++, e_ptr--, group_id, print_data, GRank_list)
-            MAX_target++;
+            MAX_target+=2;
 
             if (stage_ID == 0) {
                 updates = set_GElimPlayer(updates, tree_node + 1, s_ptr++, e_ptr--, group_id, print_data, GRank_list)
@@ -247,7 +249,9 @@ function set_GElimPlayer(updates, tree_node, s_ptr, e_ptr, group_id, print_data,
         //updates[tree_node+"/B/Name"]="NULL"
     }
     updates["Target_list/" + match_target + "/tree_node"] = tree_node;
+	updates["Target_list/" + match_target + "/lower_target"] = match_target;
     updates["Target_list/" + (match_target + 1) + "/tree_node"] = tree_node;
+	updates["Target_list/" + (match_target + 1) + "/lower_target"] = match_target;
     if (!updates[tree_node + "/B/Name"] & typeof(updates[tree_node + "/A/Name"]) != "undefined") {
         updates[tree_node + "/A/Win"] = true;
     }
@@ -367,7 +371,7 @@ function search_win(data, group, stage) {
     var e_node = find_max_target(stage) / 2 - 1;
     var updates = {};
     var next_node = s_node;
-    //console.log(s_node+" "+e_node)
+    console.log(s_node+" "+e_node)
     while (s_node < e_node) {
         var n_node = s_node + 1;
         var nextStage_node = Math.floor(n_node / 2);
@@ -378,14 +382,12 @@ function search_win(data, group, stage) {
             var s_nodeVal = data.child(n_node).val();
             var n_nodeVal = data.child(s_node).val();
         }
-
-        // console.log(s_nodeVal)
         var groupA;
         var groupB;
         groupA = check_winner(s_nodeVal);
         groupB = check_winner(n_nodeVal);
-        console.log(s_node);
         console.log(groupA);
+		console.log(groupB);
         if (groupA["win"]) {
             groupA["win"]["Judge_Win"] = [];
             groupA["win"]["Win"] = [];
@@ -418,27 +420,35 @@ function search_win(data, group, stage) {
 }
 
 function check_winner(data_val) {
+	console.log(data_val)
     var group = {};
     if (typeof(data_val["A"]) != "undefined") {
-        if (data_val["A"]["Win"] && data_val["B"]["Win"]) {
-            if (data_val["A"]["Judge_Win"] == true) {
-                group["win"] = data_val["A"];
-                group["loss"] = data_val["B"];
-            } else if (data_val["B"]["Judge_Win"] == true) {
+		if (typeof(data_val["B"]) != "undefined") {
+			if (data_val["A"]["Win"] && data_val["B"]["Win"]) {
+				
+				if (data_val["A"]["Judge_Win"] == true) {
+					group["win"] = data_val["A"];
+					group["loss"] = data_val["B"];
+				} 
+				else if (data_val["B"]["Judge_Win"] == true) {
+					group["win"] = data_val["B"];
+					group["loss"] = data_val["A"];
+
+				}
+			}
+			else if (data_val["B"]["Win"] == true) {
                 group["win"] = data_val["B"];
                 group["loss"] = data_val["A"];
-
             }
-        } else if (data_val["A"]["Win"] == true) {
-            group["win"] = data_val["A"];
-            group["loss"] = data_val["B"];
+			else if (data_val["A"]["Win"] == true) {
+				group["win"] = data_val["A"];
+				group["loss"] = data_val["B"];
 
-        } else if (typeof(data_val["B"]) != "undefined") {
-            if (data_val["B"]["Win"] == true) {
-                group["win"] = data_val["B"];
-                group["loss"] = data_val["A"];
-            }
-        } else {
+			} 
+        }
+         
+		
+		else {
             group["win"] = data_val["A"];
             //group["loss"]=data_val["B"];
         }

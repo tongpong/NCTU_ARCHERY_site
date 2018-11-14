@@ -73,7 +73,7 @@ function getranking() {
                         row.setAttribute("class", "result_row");
 						row.setAttribute("id", "Q"+i+j);
 						row.addEventListener("click",readtable);
-                        for (var k = 0; k < 7; k++) {
+                        for (var k = 0; k < 5; k++) {
                             var cell = row.insertCell();
                             if (k == 0) {
                                 cell.innerHTML = j + 1;

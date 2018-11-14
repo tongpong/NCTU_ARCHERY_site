@@ -1,0 +1,172 @@
+{
+  "KV52": {
+    "target": 1,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "KZ6A": {
+    "target": 2,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "EBRB": {
+    "target": 3,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "4ADV": {
+    "target": 4,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "GNIC": {
+    "target": 5,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "QSPT": {
+    "target": 6,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "2CBJ": {
+    "target": 7,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "L3X1": {
+    "target": 8,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "UFED": {
+    "target": 9,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "KFB6": {
+    "target": 10,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "NL3U": {
+    "target": 11,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "M4V1": {
+    "target": 12,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "1P4I": {
+    "target": 13,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "GW3Q": {
+    "target": 14,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "3F14": {
+    "target": 15,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "OJ5B": {
+    "target": 16,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "IAFX": {
+    "target": 17,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "PC3S": {
+    "target": 18,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "RL8V": {
+    "target": 19,
+    "playernum": 2,
+    "finish_wave": -1
+  },
+  "06ZZ": {
+    "target": 20,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "HWSE": {
+    "target": 21,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "VF4L": {
+    "target": 22,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "Y794": {
+    "target": 23,
+    "playernum": 2,
+    "finish_wave": -1
+  },
+  "WLMZ": {
+    "target": 24,
+    "playernum": 2,
+    "finish_wave": -1
+  },
+  "RTHA": {
+    "target": 25,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "GD4H": {
+    "target": 26,
+    "playernum": 3,
+    "finish_wave": -1
+  },
+  "LTP0": {
+    "target": 27,
+    "playernum": 2,
+    "finish_wave": -1
+  },
+  "L0VZ": {
+    "target": 28,
+    "playernum": 2,
+    "finish_wave": -1
+  },
+  "5O9J": {
+    "target": 29,
+    "playernum": 2,
+    "finish_wave": -1
+  },
+  "PPUY": {
+    "target": 30,
+    "playernum": 0,
+    "finish_wave": -1
+  },
+  "KTOK": {
+    "target": 31,
+    "playernum": 0,
+    "finish_wave": -1
+  },
+  "2ETH": {
+    "target": 32,
+    "playernum": 0,
+    "finish_wave": -1
+  },
+  "4CFW": {
+    "target": 33,
+    "playernum": 0,
+    "finish_wave": -1
+  },
+  "6PKF": {
+    "target": 34,
+    "playernum": 0,
+    "finish_wave": -1
+  }
+}

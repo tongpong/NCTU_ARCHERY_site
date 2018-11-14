@@ -254,11 +254,12 @@ function find_matching(idx,stage){ //get the match now playing
 function readtable() {
     var alias=$(this).attr('alias');
 	var FieldID=alias.split('.');
+	console.log(FieldID)
     var Set_point=database.child(FieldID[0]+"/player_result/set_point/"+FieldID[1]+"/"+FieldID[2]+FieldID[3]).val();
     var target_node=database.child(FieldID[0]+"/"+FieldID[1]+"/Target_list/"+FieldID[2]+"/tree_node").val();
     var player_info=database.child(FieldID[0]+"/"+FieldID[1]+"/"+target_node+"/"+FieldID[3]).val();
     console.log(player_info)
-
+	console.log(Set_point)
 
     var Elim_Psum=0;
     var Psum=0;

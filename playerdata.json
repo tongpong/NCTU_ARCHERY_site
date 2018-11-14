@@ -1,0 +1,407 @@
+{
+  "1A": {
+    "Group": "Starter",
+    "Name": "紀凱文",
+    "School": "高苑射箭社"
+  },
+  "1B": {
+    "Group": "Starter",
+    "Name": "楊憲紘",
+    "School": "國立成功大學騎射協會"
+  },
+  "1C": {
+    "Group": "Starter",
+    "Name": "張立旻",
+    "School": "國立台灣大學"
+  },
+  "2A": {
+    "Group": "Starter",
+    "Name": "楊博凱",
+    "School": "國立台灣大學"
+  },
+  "2B": {
+    "Group": "Starter",
+    "Name": "劉冠萱",
+    "School": "國立成功大學騎射協會"
+  },
+  "2C": {
+    "Group": "Starter",
+    "Name": "黃名顗",
+    "School": "高苑射箭社"
+  },
+  "3A": {
+    "Group": "Starter",
+    "Name": "彭日朗",
+    "School": "國立台灣大學"
+  },
+  "3B": {
+    "Group": "Starter",
+    "Name": "范嘉濬",
+    "School": "高苑射箭社"
+  },
+  "3C": {
+    "Group": "Starter",
+    "Name": "陳昱璇",
+    "School": "國立成功大學騎射協會"
+  },
+  "4A": {
+    "Group": "Starter",
+    "Name": "廖思淇",
+    "School": "高苑射箭社"
+  },
+  "4B": {
+    "Group": "Starter",
+    "Name": "李家翰",
+    "School": "國立台灣大學"
+  },
+  "4C": {
+    "Group": "Starter",
+    "Name": "張睿恩",
+    "School": "國立成功大學騎射協會"
+  },
+  "5A": {
+    "Group": "Starter",
+    "Name": "翁翊芸",
+    "School": "嘉南藥理大學"
+  },
+  "5B": {
+    "Group": "Starter",
+    "Name": "郭宥葦",
+    "School": "國立海洋大學射箭社"
+  },
+  "5C": {
+    "Group": "Starter",
+    "Name": "謝亞蓁",
+    "School": "國立成功大學騎射協會"
+  },
+  "6A": {
+    "Group": "Starter",
+    "Name": "王宏宇",
+    "School": "國立成功大學騎射協會"
+  },
+  "6B": {
+    "Group": "Starter",
+    "Name": "黃鈺菱",
+    "School": "嘉南藥理大學"
+  },
+  "6C": {
+    "Group": "Starter",
+    "Name": "黃爾群",
+    "School": "國立海洋大學射箭社"
+  },
+  "7A": {
+    "Group": "Starter",
+    "Name": "陳榆靜",
+    "School": "國立海洋大學射箭社"
+  },
+  "7B": {
+    "Group": "Starter",
+    "Name": "陳政彥",
+    "School": "嘉南藥理大學"
+  },
+  "7C": {
+    "Group": "Starter",
+    "Name": "張育綺",
+    "School": "聖約翰科技大學"
+  },
+  "8A": {
+    "Group": "Starter",
+    "Name": "何思嫺",
+    "School": "國立海洋大學射箭社"
+  },
+  "8B": {
+    "Group": "Starter",
+    "Name": "洪聖凱",
+    "School": "聖約翰科技大學"
+  },
+  "8C": {
+    "Group": "Starter",
+    "Name": "許智翔",
+    "School": "中興大學騎射協會"
+  },
+  "9A": {
+    "Group": "Starter",
+    "Name": "潘雅婷",
+    "School": "聖約翰科技大學"
+  },
+  "9B": {
+    "Group": "Starter",
+    "Name": "陳映齊",
+    "School": "中興大學騎射協會"
+  },
+  "9C": {
+    "Group": "Starter",
+    "Name": "王晨祐",
+    "School": "國立海洋大學射箭社"
+  },
+  "10A": {
+    "Group": "Starter",
+    "Name": "許夢柔",
+    "School": "東海大學射箭社"
+  },
+  "10B": {
+    "Group": "Starter",
+    "Name": "詹昊叡",
+    "School": "國立海洋大學射箭社"
+  },
+  "10C": {
+    "Group": "Starter",
+    "Name": "張君豪",
+    "School": "聖約翰科技大學"
+  },
+  "11A": {
+    "Group": "Starter",
+    "Name": "徐牧謙",
+    "School": "聖約翰科技大學"
+  },
+  "11B": {
+    "Group": "Starter",
+    "Name": "張啟緯",
+    "School": "國立暨南大學射箭"
+  },
+  "11C": {
+    "Group": "Starter",
+    "Name": "馮琬淇",
+    "School": "東海大學射箭社"
+  },
+  "12A": {
+    "Group": "Starter",
+    "Name": "王心柔",
+    "School": "國立交通大學"
+  },
+  "12B": {
+    "Group": "Starter",
+    "Name": "林若謙",
+    "School": "聖約翰科技大學"
+  },
+  "12C": {
+    "Group": "Starter",
+    "Name": "黃昱欽",
+    "School": "東海大學射箭社"
+  },
+  "13A": {
+    "Group": "Starter",
+    "Name": "林亦廷",
+    "School": "聖約翰科技大學"
+  },
+  "13B": {
+    "Group": "Starter",
+    "Name": "陳姿卉",
+    "School": "東海大學射箭社"
+  },
+  "13C": {
+    "Group": "Starter",
+    "Name": "游毓堂",
+    "School": "國立交通大學"
+  },
+  "14A": {
+    "Group": "Starter",
+    "Name": "丁榕宣",
+    "School": "東海大學射箭社"
+  },
+  "14B": {
+    "Group": "Starter",
+    "Name": "張雅晴",
+    "School": "國立交通大學"
+  },
+  "14C": {
+    "Group": "Starter",
+    "Name": "張雅筑",
+    "School": "國立暨南大學射箭"
+  },
+  "15A": {
+    "Group": "C_Grad_M",
+    "Name": "李庭佑",
+    "School": "高苑射箭社"
+  },
+  "15B": {
+    "Group": "C_Grad_M",
+    "Name": "陳映帆",
+    "School": "國立成功大學騎射協會"
+  },
+  "15C": {
+    "Group": "C_Grad_M",
+    "Name": "黃泊羲",
+    "School": "國立台灣大學"
+  },
+  "16A": {
+    "Group": "C_Grad_M",
+    "Name": "歐陽仕偉",
+    "School": "高苑射箭社"
+  },
+  "16B": {
+    "Group": "C_Grad_M",
+    "Name": "曾奕齊",
+    "School": "國立成功大學騎射協會"
+  },
+  "16C": {
+    "Group": "C_Grad_M",
+    "Name": "余忠杰",
+    "School": "國立台灣大學"
+  },
+  "17A": {
+    "Group": "C_Grad_M",
+    "Name": "張家豪",
+    "School": "國立台灣大學"
+  },
+  "17B": {
+    "Group": "C_Grad_M",
+    "Name": "李昱儒",
+    "School": "國立成功大學騎射協會"
+  },
+  "17C": {
+    "Group": "C_Grad_M",
+    "Name": "蘇佑勝",
+    "School": "高苑射箭社"
+  },
+  "18A": {
+    "Group": "C_Grad_M",
+    "Name": "何宇倫",
+    "School": "國立台灣大學"
+  },
+  "18B": {
+    "Group": "C_Grad_M",
+    "Name": "謝旻紘",
+    "School": "嘉南藥理大學"
+  },
+  "18C": {
+    "Group": "C_Grad_M",
+    "Name": "王睿善",
+    "School": "聖約翰科技大學"
+  },
+  "19A": {
+    "Group": "C_Grad_M",
+    "Name": "謝宗哲",
+    "School": "聖約翰科技大學"
+  },
+  "19B": {
+    "Group": "C_Grad_M",
+    "Name": "李宜樺",
+    "School": "國立暨南大學射箭"
+  },
+  "20A": {
+    "Group": "C_Grad_M",
+    "Name": "董易軒",
+    "School": "崑山科技大學"
+  },
+  "20B": {
+    "Group": "C_Grad_M",
+    "Name": "林彥辰",
+    "School": "輔大射箭社"
+  },
+  "20C": {
+    "Group": "C_Grad_M",
+    "Name": "翁瑋辰",
+    "School": "嘉南藥理大學"
+  },
+  "21A": {
+    "Group": "C_Grad_F",
+    "Name": "郭晴",
+    "School": "高苑射箭社"
+  },
+  "21B": {
+    "Group": "C_Grad_F",
+    "Name": "陳品伃",
+    "School": "國立成功大學騎射協會"
+  },
+  "21C": {
+    "Group": "C_Grad_F",
+    "Name": "鄭喬安",
+    "School": "國立台灣大學"
+  },
+  "22A": {
+    "Group": "C_Grad_F",
+    "Name": "何欣",
+    "School": "國立台灣大學"
+  },
+  "22B": {
+    "Group": "C_Grad_F",
+    "Name": "陳怡安",
+    "School": "高苑射箭社"
+  },
+  "22C": {
+    "Group": "C_Grad_F",
+    "Name": "林宛儀",
+    "School": "國立成功大學騎射協會"
+  },
+  "23A": {
+    "Group": "C_Grad_F",
+    "Name": "歐碧雪",
+    "School": "高苑射箭社"
+  },
+  "23B": {
+    "Group": "C_Grad_F",
+    "Name": "吳孟芯",
+    "School": "國立台灣大學"
+  },
+  "24A": {
+    "Group": "C_Grad_F",
+    "Name": "謝竺韻",
+    "School": "國立暨南大學射箭"
+  },
+  "24B": {
+    "Group": "C_Grad_F",
+    "Name": "黃尉敏",
+    "School": "聖約翰科技大學"
+  },
+  "25A": {
+    "Group": "C_Grad_O",
+    "Name": "鄭子豪",
+    "School": "Good Shot"
+  },
+  "25B": {
+    "Group": "C_Grad_O",
+    "Name": "林則勳",
+    "School": "聖約翰科技大學"
+  },
+  "25C": {
+    "Group": "C_Grad_O",
+    "Name": "陳琳元",
+    "School": "山交"
+  },
+  "26A": {
+    "Group": "C_Grad_O",
+    "Name": "張淳富",
+    "School": "山交"
+  },
+  "26B": {
+    "Group": "C_Grad_O",
+    "Name": "徐瑜廷",
+    "School": "聖約翰科技大學"
+  },
+  "26C": {
+    "Group": "C_Grad_O",
+    "Name": "鐘少寶",
+    "School": "SJY弓研社"
+  },
+  "27A": {
+    "Group": "C_Grad_O",
+    "Name": "黃元泰",
+    "School": "遊隼射箭隊"
+  },
+  "27B": {
+    "Group": "C_Grad_O",
+    "Name": "鄭伯軍",
+    "School": "國立暨南大學射箭"
+  },
+  "28A": {
+    "Group": "B_Grad",
+    "Name": "許益銘",
+    "School": "聖約翰科技大學"
+  },
+  "28B": {
+    "Group": "B_Grad",
+    "Name": "李約瑟",
+    "School": "輔大射箭社"
+  },
+  "29A": {
+    "Group": "B_Grad",
+    "Name": "畢楨煥",
+    "School": "國立交通大學"
+  },
+  "29B": {
+    "Group": "B_Grad",
+    "Name": "黎城杰",
+    "School": "輔大射箭社"
+  }
+}

@@ -125,7 +125,7 @@ function init_scoring() {
         else if(Match_type=="Group_Elimination"){
             console.log("init Group_Elimination");
             
-            final_set=GELIM_SCORE_NUM;
+            final_set=GELIM_SET_NUM;
             scoreNum=GELIM_SCORE_NUM;
             console.log(scoreNum)
             verification_process(cookie_vercode_raw,"Group_Elimination");
@@ -149,8 +149,10 @@ function verification_process(cookie_vercode_raw,match_type){
                 console.log(player_num)
                 if(ElIM_Match){
                     player_num=2;
+					console.log(final_set)
                     if(final_set==Match_Wave){
                         (Match_type=="Elimination")?scoreNum=1:scoreNum=scoreNum;
+						(Match_type=="Group_Elimination")?scoreNum=3:scoreNum=scoreNum;
                     }
                 }
                 
@@ -293,10 +295,13 @@ function Elimination_player_data_init(getsum){
 
 function GElimination_player_data_init(getsum){
     var querystr=Match_stage+"/"+get_group_bytarget(target)+'/';
-    var ref = firebase.database().ref(querystr+'Target_list/'+target+"/tree_node");
+    var ref = firebase.database().ref(querystr+'Target_list/'+target);
     var search = ref.once("value").then(function(snapshot) {
-        console.log(querystr+snapshot.val());
-        var ref_node = firebase.database().ref(querystr+snapshot.val());
+		var ret=snapshot.val();
+		var tree_node=ret["tree_node"];
+		target=ret["lower_target"];
+		setCookie("cookie_target", target, '1');
+        var ref_node = firebase.database().ref(querystr+tree_node);
         var search_node = ref_node.once("value").then(function(snapshot_node) {
             for(var i = 0; i < 2; i++){
                 player_school[i] = "";
@@ -670,14 +675,16 @@ function get_accsum(position){
             
 			for(var j = 1;j<=Match_Wave;j++){
                 if(ElIM_Match&ELIM_POINT_SYSTEM[get_groupID(player_group[0])]==1){
-                    Q_sum[position]+=parseInt(snapshot.child(j+"/Elim_set_point").val());
+					if(parseInt(snapshot.child(j+"/Elim_set_point").val())>=0)
+						Q_sum[position]+=parseInt(snapshot.child(j+"/Elim_set_point").val());
                     if(Q_sum[position]>=WIN_point){
                         console.log("player"+position+" win")
                         submit_winner(position);
                     }
                 }
 				else if(snapshot.child("/"+j+"/P_SUM").val())
-                    Q_sum[position]+=parseInt(snapshot.child(j+"/P_SUM").val());
+                    if(parseInt(snapshot.child(j+"/P_SUM").val())>=0)
+						Q_sum[position]+=parseInt(snapshot.child(j+"/P_SUM").val());
 			}
 		
 			if(position==(player_num-1)){

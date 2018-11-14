@@ -13,7 +13,7 @@ var WIN_tree;
 init_EliminationControl();
 
 function iframe_reload() {
-    console.log("frame reload");
+    //console.log("frame reload");
     document.getElementById('ranking_frame').src = "../result/elimination_result.html";
 }
 
@@ -63,7 +63,7 @@ function init_EliminationControl() {
             var stage = stage_trans(snapshot.child("Stage").val());
 
 
-            console.log(stage)
+            //console.log(stage)
             var wave = snapshot.child("wave").val();
 
             document.getElementById("stage_name").innerHTML = Match_stage + "<br>";
@@ -94,14 +94,14 @@ function init_Eset() {
                 var print_data = false;
                 if (top_convert(Elim_top[i]) == j) print_data = true
                 MAX_target = init_ElimStage(j, i, print_data, MAX_target, snapshot);
-                console.log(MAX_target);
+                //console.log(MAX_target);
                 firebase.database().ref('/Statistics/Target_start/Elimination/' + STAGE_NAME[j]).update(start_target);
 
             }
         }
 
 
-        console.log("update_wave")
+        //console.log("update_wave")
         var wave_data = {};
         wave_data["wave"] = 1;
         wave_data["Stage"] = STAGE_NAME[STAGE_NAME.length - 1];
@@ -116,13 +116,19 @@ function init_Eset() {
 }
 
 function init_ElimStage(stage_ID, group_id, print_data, MAX_target, snapshot) {
-    // console.log(STAGE_NAME[stage_ID]+" "+PlAYER_GROUP[group_id]);
+    // //console.log(STAGE_NAME[stage_ID]+" "+PlAYER_GROUP[group_id]);
     var E_match_ID = top_convert(Elim_top[group_id])
     if (E_match_ID >= stage_ID) {
         console.log(PlAYER_GROUP[group_id] + " " + STAGE_NAME[stage_ID]);
         var updates = {};
-        if (MAX_target < Elim_targetbase[group_id] && Target_Distance[group_id] != Target_Distance[group_id - 1])
+		console.log(Elim_targetbase)
+        if ((MAX_target < Elim_targetbase[group_id] && Target_Distance[group_id] != Target_Distance[group_id - 1]))
             MAX_target = Elim_targetbase[group_id];
+	
+		if(stage_ID<3){
+			MAX_target = Elim_targetbase[group_id];
+		}
+		console.log(MAX_target)
         start_target[PlAYER_GROUP[group_id]] = MAX_target;
         var s_ptr, e_ptr;
         s_ptr = 0;
@@ -220,7 +226,7 @@ function change_next_wave() {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorMessage);
+        //console.log(errorMessage);
     })
 }
 
@@ -229,7 +235,7 @@ function change_next_EStage() {
     var ref = firebase.database().ref('/Elimination');
     var search = ref.once("value").then(function(snapshot) {
         var stage_ID = stage_trans(snapshot.child("Stage").val());
-        console.log("stage:" + stage_ID)
+        //console.log("stage:" + stage_ID)
         if (stage_ID > 0) {
             var updates = {};
             updates["/Elimination/Stage"] = STAGE_NAME[stage_ID - 1];
@@ -242,7 +248,7 @@ function change_next_EStage() {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorMessage);
+        //console.log(errorMessage);
     })
 }
 
@@ -265,9 +271,9 @@ function checked_win() {
         var stage = snapshot.child("/Stage").val();
         if (stage) {
             for (var i = 0; i < PlAYER_GROUP.length; i++) {
-                console.log(stage + "/" + PlAYER_GROUP[i]);
+                //console.log(stage + "/" + PlAYER_GROUP[i]);
                 var data = snapshot.child(stage + "/" + PlAYER_GROUP[i]);
-                console.log(!data.val())
+                //console.log(!data.val())
                 if (!data.val());
                 else if (stage != "Final")
                     search_win(data, PlAYER_GROUP[i], stage);
@@ -282,7 +288,7 @@ function search_win(data, group, stage) {
     var e_node = find_max_target(stage) / 2 - 1;
     var updates = {};
     var next_node = s_node;
-    //console.log(s_node+" "+e_node)
+    ////console.log(s_node+" "+e_node)
     while (s_node < e_node) {
         var n_node = s_node + 1;
         var nextStage_node = Math.floor(n_node / 2);
@@ -294,13 +300,13 @@ function search_win(data, group, stage) {
             var n_nodeVal = data.child(s_node).val();
         }
 
-        // console.log(s_nodeVal)
+        // //console.log(s_nodeVal)
         var groupA;
         var groupB;
         groupA = check_winner(s_nodeVal);
         groupB = check_winner(n_nodeVal);
-        console.log(s_node);
-        console.log(groupA);
+        //console.log(s_node);
+        //console.log(groupA);
         if (groupA["win"]) {
             groupA["win"]["Judge_Win"] = [];
             groupA["win"]["Win"] = [];
@@ -327,46 +333,53 @@ function search_win(data, group, stage) {
         }
         s_node += 2;
     }
-    console.log("finish update " + group);
+    //console.log("finish update " + group);
 
 
 }
 
 function check_winner(data_val) {
+	//console.log(data_val)
     var group = {};
     if (typeof(data_val["A"]) != "undefined") {
-        if (data_val["A"]["Win"] && data_val["B"]["Win"]) {
-            if (data_val["A"]["Judge_Win"] == true) {
-                group["win"] = data_val["A"];
-                group["loss"] = data_val["B"];
-            } else if (data_val["B"]["Judge_Win"] == true) {
+		if (typeof(data_val["B"]) != "undefined") {
+			if (data_val["A"]["Win"] && data_val["B"]["Win"]) {
+				
+				if (data_val["A"]["Judge_Win"] == true) {
+					group["win"] = data_val["A"];
+					group["loss"] = data_val["B"];
+				} 
+				else if (data_val["B"]["Judge_Win"] == true) {
+					group["win"] = data_val["B"];
+					group["loss"] = data_val["A"];
+
+				}
+			}
+			else if (data_val["B"]["Win"] == true) {
                 group["win"] = data_val["B"];
                 group["loss"] = data_val["A"];
-
             }
-        } else if (data_val["A"]["Win"] == true) {
-            group["win"] = data_val["A"];
-            group["loss"] = data_val["B"];
+			else if (data_val["A"]["Win"] == true) {
+				group["win"] = data_val["A"];
+				group["loss"] = data_val["B"];
 
-        } else if (typeof(data_val["B"]) != "undefined") {
-            if (data_val["B"]["Win"] == true) {
-                group["win"] = data_val["B"];
-                group["loss"] = data_val["A"];
-            }
-        } else {
+			} 
+        }
+         
+		
+		else {
             group["win"] = data_val["A"];
             //group["loss"]=data_val["B"];
         }
 
     }
 
-    console.log(group);
+    //console.log(group);
     return group;
 }
-
 function update_node(data_val, group, stage_ID, node) {
     var path = '/Elimination/' + STAGE_NAME[stage_ID] + "/" + group + "/" + node;
-    //console.log(path)
+    ////console.log(path)
     var ref = firebase.database().ref(path);
     ref.update(data_val);
 }
@@ -400,16 +413,16 @@ function Init_targetVAR() {
             var ret = snapshot.val();
             var stage_group = Object.keys(snapshot.val());
             for (var i = 0; i < stage_group.length; i++) {
-                console.log(stage_group[i])
+                //console.log(stage_group[i])
                 var target_list = Object.keys(ret[stage_group[i]]['Target_list']);
-                console.log(target_list);
+                //console.log(target_list);
                 for (var j = 0; j < target_list.length; j++) {
                     var target_node = ret[stage_group[i]]['Target_list'][target_list[j]]["tree_node"];
-                    console.log(ret);
+                    //console.log(ret);
                     //if(ret[stage_group[i]][target_node]['A']&ret[stage_group[i]][target_node]["B"])
-                    console.log(typeof(ret[stage_group[i]][target_node]['A']));
+                    //console.log(typeof(ret[stage_group[i]][target_node]['A']));
                     if (typeof(ret[stage_group[i]][target_node]['A']) != "undefined" & typeof(ret[stage_group[i]][target_node]['B']) != "undefined") {
-                        console.log(target_list[j])
+                        //console.log(target_list[j])
                         init_finish_wave(parseInt(target_list[j]))
                     }
                 }
@@ -418,7 +431,7 @@ function Init_targetVAR() {
         });
         //}
         // catch(error){
-        //  console.log(error);
+        //  //console.log(error);
         //}
 
     } else
@@ -428,7 +441,7 @@ function Init_targetVAR() {
 
 
 function get_Elimaccsum(target) {
-    console.log("get_Elimaccsum " + target)
+    //console.log("get_Elimaccsum " + target)
     var player_num = 2;
     var group = get_group_bytarget(target);
     for (var i = 0; i < player_num; i++) {
@@ -460,7 +473,7 @@ function get_PlayerElimAccSum(group, target, positionID) {
 }
 
 function update_PlayerElimAccSum(acc_sum, group, target, positionID) {
-    console.log("update_Elimaccsum " + target)
+    //console.log("update_Elimaccsum " + target)
     var querystr = Match_stage + "/" + get_group_bytarget(target) + '/';
     var ref = firebase.database().ref(querystr + "Target_list/" + target + "/tree_node");
     var search = ref.once("value").then(function(snapshot) {
@@ -522,7 +535,7 @@ function checked_mod_input(rows, rows_id, rows_num) {
     var ref = firebase.database().ref('Elimination/' + match_type + '/' + group + '/Target_list');
     var search = ref.once("value").then(function(snapshot) {
         var val_get = snapshot.val();
-        console.log(group);
+        //console.log(group);
         if (val_get[target_in]) {
             error_code[rows_id] = 0;
             upload_result(rows, rows_id, group, rows_num);
@@ -530,7 +543,7 @@ function checked_mod_input(rows, rows_id, rows_num) {
             error_code[rows_id] = 1; //no id
             rows_remain--;
             return_mod_error(rows_id, rows_num);
-            console.log("NOTARGET IN:" + rows_id);
+            //console.log("NOTARGET IN:" + rows_id);
         }
     });
 }
@@ -551,7 +564,7 @@ function upload_result(rows, rows_id, group, rows_num) {
     var ref = firebase.database().ref('/Elimination/' + match_type + '/player_result/set_point/' + group + "/");
     if (rows_val.length < (ELIM_SCORE_NUM * 2 + 3)) {
         error_code[rows_id] = 2;
-        console.log("len error")
+        //console.log("len error")
     } else {
         var offset = 3
         for (var i = 0; i < 2; i++) {
@@ -606,7 +619,7 @@ function upload_result(rows, rows_id, group, rows_num) {
         ref.update(updates);
         rows_remain--;
     } else {
-        //console.log(rows_num+" "+rows_id);
+        ////console.log(rows_num+" "+rows_id);
         rows_remain--;
         return_mod_error(rows_id, rows_num);
     }
