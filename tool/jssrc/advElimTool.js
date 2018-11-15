@@ -176,8 +176,10 @@ function getTargetList(){
             td.setAttribute("style","border-style:groove;border-width:1px;width:"+width+"%")
             td.setAttribute("onclick","select_table("+i+")")
             var raw_data=snapshot.child(PlAYER_GROUP[i]).val();
-            groupTable.push(buildListTable(raw_data,PlAYER_GROUP[i]));
-            td.innerHTML=PlAYER_GROUP[i];
+			if(raw_data){
+				groupTable.push(buildListTable(raw_data,PlAYER_GROUP[i]));
+            }
+			td.innerHTML=PlAYER_GROUP[i];
             tr.appendChild(td);
         }
         $("#group_sel").append(tr);
@@ -256,6 +258,7 @@ function search_target(){
 		var group=get_group_bytarget(target);
 		var tree_node;
 		console.log(snapshot.val());
+		console.log(Match_subtype+"/"+group+"/"+"Target_list");
         var Target_list=snapshot.child(Match_subtype+"/"+group+"/"+"Target_list").val();
 		
         tree_node=Target_list[target]["tree_node"];
