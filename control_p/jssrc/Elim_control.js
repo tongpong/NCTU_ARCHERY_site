@@ -310,11 +310,13 @@ function search_win(data, group, stage) {
         if (groupA["win"]) {
             groupA["win"]["Judge_Win"] = [];
             groupA["win"]["Win"] = [];
+            groupA["win"]["Point_Sum"] = null;
             update_node(groupA["win"], group, stage_ID - 1, nextStage_node + "/A")
         }
         if (groupB["win"]) {
             groupB["win"]["Judge_Win"] = [];
             groupB["win"]["Win"] = [];
+            groupB["win"]["Point_Sum"] = null;
             update_node(groupB["win"], group, stage_ID - 1, nextStage_node + "/B")
         }
         if (stage == "Semi_Final") {
@@ -322,11 +324,13 @@ function search_win(data, group, stage) {
             if (groupA["loss"]) {
                 groupA["loss"]["Judge_Win"] = [];
                 groupA["loss"]["Win"] = [];
+                groupA["loss"]["Point_Sum"] = null;
                 update_node(groupA["loss"], group, stage_ID - 1, nextStage_node + "/A")
             }
             if (groupB["loss"]) {
                 groupB["loss"]["Judge_Win"] = [];
                 groupB["loss"]["Win"] = [];
+                groupB["loss"]["Point_Sum"] = null;
                 update_node(groupB["loss"], group, stage_ID - 1, nextStage_node + "/B")
             }
             s_node += 2;
@@ -604,7 +608,7 @@ function upload_result(rows, rows_id, group, rows_num) {
         for (var i = 0; i < 2; i++) {
             var player_id = target_in + playermark[i];
             for (var j = offset; j < offset + ELIM_SCORE_NUM; j++) {
-                updates[player_id + "/" + set + '/P' + (j - offset - 1)] = rows_val[j];
+                updates[player_id + "/" + set + '/P' + (j - offset+1)] = rows_val[j];
             }
             updates[player_id + "/" + set + '/P_SUM/'] = P_sum[i];
             updates[player_id + "/" + set + '/X_10_sum/'] = X_10_sum[i];
@@ -615,7 +619,7 @@ function upload_result(rows, rows_id, group, rows_num) {
         }
 
 
-
+        //console.log(updates)
         ref.update(updates);
         rows_remain--;
     } else {

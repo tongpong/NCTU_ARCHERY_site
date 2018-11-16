@@ -1,0 +1,32 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+    @page {
+     margin:50mm; /*print邊界*/
+     size:148mm 210mm; /*列印紙張大小*/
+        }
+        .print{
+        page-break-after:always; /*print分頁面*/
+        }
+        @media print{
+        .imgs{
+            width: 0px;
+        }
+    }
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+      <script src="jssrc/jquery.collapse.js"></script>
+      
+</style>
+</head>
+<body >
+<table id="qrcodeList" style=" height: 29.7cm;
+        width: 21cm;
+        margin-left: auto;
+        margin-right: auto;">
+
+</table>
+<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+<script src="qrcode.js"></script>
+</body>
+</html>
