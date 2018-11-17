@@ -111,7 +111,7 @@
   },
   "Y794": {
     "target": 23,
-    "playernum": 2,
+    "playernum": 3,
     "finish_wave": -1
   },
   "WLMZ": {
@@ -136,7 +136,7 @@
   },
   "L0VZ": {
     "target": 28,
-    "playernum": 2,
+    "playernum": 1,
     "finish_wave": -1
   },
   "5O9J": {
@@ -146,17 +146,17 @@
   },
   "PPUY": {
     "target": 30,
-    "playernum": 0,
+    "playernum": 2,
     "finish_wave": -1
   },
   "KTOK": {
     "target": 31,
-    "playernum": 0,
+    "playernum": 1,
     "finish_wave": -1
   },
   "2ETH": {
     "target": 32,
-    "playernum": 0,
+    "playernum": 1,
     "finish_wave": -1
   },
   "4CFW": {

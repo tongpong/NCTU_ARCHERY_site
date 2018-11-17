@@ -27,11 +27,13 @@ function build_table(){
         
         var row=document.createElement("tr");
         row.setAttribute('class','result');
-        create_cell(row,"th",null,'result','排名');
+        create_cell(row,"th",null,'result','排名',null);
         create_cell(row,"th",null,'result','靶號');
-        create_cell(row,"th",null,'result_name','姓名');
-        create_cell(row,"th",null,'result_school','學校');
-        create_cell(row,"th",null,'result','成績');
+        create_cell(row,"th",null,'result_name','姓名',null);
+        create_cell(row,"th",null,'result_school','學校',null);
+        create_cell(row,"th",null,'result','成績',null);
+		create_cell(row,"th",null,'result','', "visibility:hidden;");
+		create_cell(row,"th",null,'result','', "visibility:hidden;");
         table.append(row);
         document.getElementById(result_table[tab_sel]).style.display = "block";
     }
@@ -68,12 +70,12 @@ function getranking() {
 						sel="sel_";
 					}
 					else sel="";
-					if (Sret[j]["Player_pos"] != "undefined") {
+					if (Sret[j]["Player_pos"] != "undefined"&&Sret[j]["Name"]!="Empty") {
                         row = table.insertRow();
                         row.setAttribute("class", "result_row");
 						row.setAttribute("id", "Q"+i+j);
 						row.addEventListener("click",readtable);
-                        for (var k = 0; k < 5; k++) {
+                        for (var k = 0; k < 7; k++) {
                             var cell = row.insertCell();
                             if (k == 0) {
                                 cell.innerHTML = j + 1;

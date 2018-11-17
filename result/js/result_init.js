@@ -72,13 +72,15 @@ function build_page(){
     document.getElementById("headname").innerHTML=Match_name;   
 }
 
-function create_cell(ROW,cell_type,ID=null,CLASS=null,CONTENT=null){
+function create_cell(ROW,cell_type,ID=null,CLASS=null,CONTENT=null,STYLE=null){
     //console.log(cell_type)
     var cell=document.createElement(cell_type);
     if(ID!=null)
         cell.setAttribute('id',ID);
     if(CLASS!=null)
         cell.setAttribute('class',CLASS);
+	if(STYLE!=null)
+		cell.setAttribute('style',STYLE);
     if(CONTENT!=null)
         cell.innerHTML=CONTENT;
     ROW.append(cell);

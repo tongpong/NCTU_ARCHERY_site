@@ -77,7 +77,7 @@ function url_verification(){
     let varCode = urlParams.get('varCode');
     if(varCode!=null){
         ver_code.value=varCode;
-        verification();
+        //verification();
     }
 }
 

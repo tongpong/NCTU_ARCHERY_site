@@ -94,7 +94,14 @@ function init_row(rows, q_data, player_data) {
             x_10_sum += q_data[rows[i]]["Q_X_10_sum"];
             player_name.push(q_data[rows[i]]["Name"]);
         } else {
-            player_name.push(player_data[rows[i]]["Name"]);
+			if(player_data[rows[i]])
+				player_name.push(player_data[rows[i]]["Name"]);
+			else{
+				player_name.push("亂入");
+				console.log(player_data);
+				console.log("亂入")
+				
+			}
         }
 
     }

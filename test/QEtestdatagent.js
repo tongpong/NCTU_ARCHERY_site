@@ -6,7 +6,7 @@ function process(){
 	textout.value="";
 	var start=start_target.value;
     var end=end_target.value;
-	for(var i=start;i<=end;i++){
+	for(var i=start;i<=end;i+=2){
 		genTargetpoint(i)
 	}
 	
@@ -17,7 +17,7 @@ function genTargetpoint(target){
     var p_sumA=0;
     var p_sumB=0;
     var set=1;
-    while(p_sumA<6&&p_sumB<6){
+    while(p_sumA<5&&p_sumB<5){
         var dataoutA=genpoint();
         var dataoutB=genpoint();
         var point_strA=dataoutA[0];
@@ -40,7 +40,7 @@ function genTargetpoint(target){
 function genpoint(){
     var str_out="";
     var p_sum=0;
-    for(var j=0;j<3;j++){
+    for(var j=0;j<3;j++){6
         var point = (getRandomInt(12));
         if(point==0){
             str_out+=','+"M";

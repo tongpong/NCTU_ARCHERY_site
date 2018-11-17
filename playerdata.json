@@ -334,6 +334,11 @@
     "Name": "吳孟芯",
     "School": "國立台灣大學"
   },
+  "23C": {
+    "Group": "C_Grad_F",
+    "Name": "呂曉騏",
+    "School": "東海大學射箭社"
+  },
   "24A": {
     "Group": "C_Grad_F",
     "Name": "謝竺韻",
@@ -385,23 +390,38 @@
     "School": "國立暨南大學射箭"
   },
   "28A": {
+    "Group": "C_Grad_O",
+    "Name": "Empty",
+    "School": "Empty"
+  },
+  "29A": {
     "Group": "B_Grad",
     "Name": "許益銘",
     "School": "聖約翰科技大學"
   },
-  "28B": {
+  "29B": {
     "Group": "B_Grad",
     "Name": "李約瑟",
     "School": "輔大射箭社"
   },
-  "29A": {
+  "30A": {
     "Group": "B_Grad",
     "Name": "畢楨煥",
     "School": "國立交通大學"
   },
-  "29B": {
+  "30B": {
     "Group": "B_Grad",
     "Name": "黎城杰",
     "School": "輔大射箭社"
+  },
+  "31A": {
+    "Group": "B_Grad",
+    "Name": "Empty",
+    "School": "Empty"
+  },
+  "32A": {
+    "Group": "B_Grad",
+    "Name": "Empty",
+    "School": "Empty"
   }
 }

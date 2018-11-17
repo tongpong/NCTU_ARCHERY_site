@@ -1,21 +1,21 @@
-﻿Field_id,0,1,2,3,4,,
-Match_name,第二十三屆風城杯,,,,,,
-Field_name,Starter,C_Grad_M,C_Grad_F,C_Grad_O,B_Grad,,
-Field_Cname,新生,男丙,女丙,公開丙,乙組,,
-Player_count,56,16,16,32,12,,
-Elim_top,32,16,8,16,8,,
-Team_top,8,8,8,8,8,,
-Total_TARGETNum,33,,,,,,
-Target_Distance,18,30,30,30,70,,
-Elim_FinaltargetNum,12,6,4,6,4,,
-Elim_targetbase,1,13,19,23,29,,
-ELIM_POINT_SYSTEM,1,1,1,1,1,,
-Qual_set_NUM,6,6,6,6,6,,
-Elim_set_NUM,6,6,6,6,6,,
-GElim_set_NUM,5,5,5,5,5,,
-Qual_arrow_NUM,6,6,6,6,6,,
-Elim_arrow_NUM,3,3,3,3,3,,
-GElim_arrow_NUM,6,6,6,6,6,,
-Qual_time_limit,240,240,240,240,240,,
-Elim_time_limit,120,120,120,120,120,,
-GElim_time_limit,120,120,120,120,120,,
+Field_id	0	1	2	3	4
+Match_name	????????				
+Field_name	Starter	C_Grad_M	C_Grad_F	C_Grad_O	B_Grad
+Field_Cname	??	??	??	???	??
+Player_count	56	16	16	32	12
+Elim_top	32	16	8	16	8
+Team_top	8	8	8	8	8
+Total_TARGETNum	33				
+Target_Distance	18	30	30	30	70
+Elim_FinaltargetNum	16	4	4	4	4
+Elim_targetbase	1	17	21	25	29
+ELIM_POINT_SYSTEM	1	1	1	1	1
+Qual_set_NUM	6	6	6	6	6
+Elim_set_NUM	6	6	6	6	6
+GElim_set_NUM	5	5	5	5	5
+Qual_arrow_NUM	6	6	6	6	6
+Elim_arrow_NUM	3	3	3	3	3
+GElim_arrow_NUM	6	6	6	6	6
+Qual_time_limit	240	240	240	240	240
+Elim_time_limit	120	120	120	120	120
+GElim_time_limit	120	120	120	120	120
