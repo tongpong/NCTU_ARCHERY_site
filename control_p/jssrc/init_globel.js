@@ -1,10 +1,5 @@
 var config = {
-    apiKey: "AIzaSyAJDWQ-Y40b2tl6zs7hYuZNqFQYiaq71Dw",
-    authDomain: "archery-ed959.firebaseapp.com",
-    databaseURL: "https://archery-ed959.firebaseio.com",
-    projectId: "archery-ed959",
-    storageBucket: "archery-ed959.appspot.com",
-    messagingSenderId: "107987243756"
+    
 };
 firebase.initializeApp(config);
 var STAGE_CNAME=["決賽","準決賽","8強賽","16強賽","32強賽"];
